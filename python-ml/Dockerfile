@@ -1,5 +1,5 @@
 # PROVIDES with needed libraries for running https://github.com/tyiannak/pyAudioAnalysis
-FROM ubuntu:latest
+FROM ubuntu:16.04
 
 LABEL maintainer="King David Consulting LLC <info@kingdavidconsulting.com>"
 
@@ -30,6 +30,7 @@ RUN apt-get update --fix-missing && apt-get install -y wget ca-certificates \
     tk-dev\
     unzip \
     libglib2.0-0 libxext6 libsm6 libxrender1 \
+    libav-tools ffmpeg \
     libxft-dev \
     libfreetype6 \
     libfreetype6-dev \
