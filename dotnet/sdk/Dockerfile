@@ -7,6 +7,9 @@ ARG image=microsoft/dotnet
 FROM ${image}:${sdkTag} as builder
 LABEL version="1.0" maintainer="kdcllc <info@kingdavidconsulting.com>"
 
+RUN apt-get -y update &&\
+    apt-get -y install wget gnupg2 \
+     && rm -rf /var/lib/apt/lists/*
 # NODE
 ENV NODE_VERSION 8.11.3
 ENV NODE_DOWNLOAD_URL https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz
@@ -36,13 +39,15 @@ ONBUILD RUN for file in $(ls *.csproj); do mkdir -p src/${file%.*}/ && mv $file 
 ONBUILD COPY test/*/*.csproj ./
 ONBUILD RUN for file in $(ls *.csproj); do mkdir -p test/${file%.*}/ && mv $file test/${file%.*}/; done
 
+# Debug
+#ONBUILD  RUN ls; cd src; ls; cd aspnetapp.frontend; ls;
 # restore project
-ONBUILD RUN dotnet restore  *.sln -nowarn:msb3202,nu1503
+ONBUILD RUN dotnet restore ./*.sln --force -v n
 
 # build project
 ONBUILD COPY ./src ./src
 ONBUILD COPY ./test ./test
-ONBUILD RUN dotnet build  *.sln  -p:NetCoreVersion=${coreversion} -c Release --no-restore
+ONBUILD RUN dotnet build  ./*.sln -p:NetCoreVersion=${coreversion} -c Release
 
 # run tests
 ONBUILD RUN find ./test -name '*.csproj' -print0 | xargs -L1 -0 dotnet test -c Release --logger trx --results-directory /var/temp --no-build --no-restore

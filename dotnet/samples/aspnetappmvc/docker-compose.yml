@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  aspnetapp:
+    image: ${DOCKER_REGISTRY-}aspnetapp
+    build:
+      context: .
+      dockerfile: src/aspnetapp.frontend/Dockerfile
+      args:
+       sdkImage: kdcllc/dotnet
+       sdkTag: 2.2-sdk
+       runtimeImage: microsoft/dotnet
+       runtimeTag: 2.2-aspnetcore-runtime
+       coreversion: netcore22
