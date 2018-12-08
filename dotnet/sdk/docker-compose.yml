@@ -1,0 +1,28 @@
+version: '3.4'
+# docker push kdcllc/dotnet:2.1-sdk
+services:
+  dotnet.builder.21:
+    image: kdcllc/dotnet:2.1-sdk
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+       image: microsoft/dotnet
+       sdkTag: 2.1-sdk
+       runtimeTag: 2.1-aspnetcore-runtime
+       coreversion: netcore21
+    volumes:
+      - ${BUILD_ARTIFACTSTAGINGDIRECTORY:-./TestResults/}:/var/temp
+  
+  dotnet.builder.22:
+    image: kdcllc/dotnet:2.2-sdk
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+       image: microsoft/dotnet
+       sdkTag: 2.2-sdk
+       runtimeTag: 2.2-aspnetcore-runtime
+       coreversion: netcore22
+    volumes:
+      - ${BUILD_ARTIFACTSTAGINGDIRECTORY:-./TestResults/}:/var/temp
