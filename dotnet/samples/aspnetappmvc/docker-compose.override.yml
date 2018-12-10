@@ -5,10 +5,19 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - ASPNETCORE_HTTPS_PORT=44334
+      - ASPNETCORE_HTTPS_PORT=5001
+      - ConnectionStrings:DefaultConnection=Server=aspnetapp.sqldb;Database=aspnetapp;User Id=sa;Password=Pass@word
+
     ports:
-      - "54414:80"
-      - "44334:443"
+      - "5000:80"
+      - "5001:443"
     volumes:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+
+  aspnetapp.sqldb:
+    ports:
+     - "5467:1433"
+    environment:
+     - SA_PASSWORD=Pass@word
+     - ACCEPT_EULA=Y

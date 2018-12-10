@@ -5,10 +5,13 @@ services:
     image: ${DOCKER_REGISTRY-}aspnetapp.frontend
     build:
       context: .
-      dockerfile: src/aspnetapp.frontend.frontend/Dockerfile
+      dockerfile: src/aspnetapp.frontend/Dockerfile
       args:
        sdkImage: kdcllc/dotnet
        sdkTag: 2.2-sdk
        runtimeImage: microsoft/dotnet
        runtimeTag: 2.2-aspnetcore-runtime
        coreversion: netcore22
+
+  aspnetapp.sqldb:
+   image: microsoft/mssql-server-linux
