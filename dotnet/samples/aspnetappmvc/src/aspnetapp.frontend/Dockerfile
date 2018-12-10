@@ -13,4 +13,4 @@ RUN dotnet publish "./src/aspnetapp.frontend/aspnetapp.frontend.csproj" -c Relea
 FROM ${runtimeImage}:${runtimeTag} AS final
 WORKDIR /app
 COPY --from=builder /app .
-ENTRYPOINT ["dotnet", "aspnetapp.dll"]
+ENTRYPOINT ["dotnet", "aspnetapp.frontend.dll"]

@@ -1,8 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>$(NetCoreTargetVersion)</TargetFramework>
-    <UserSecretsId>aspnet-aspnetapp-8C5D84B3-27C0-4964-A32B-91DD9B1C01D3</UserSecretsId>
+    <UserSecretsId>8c5d84b3-27c0-4964-a32b-91dd9b1c01d3</UserSecretsId>
     <AspNetCoreHostingModel>$(AspNetCoreHostingModel)</AspNetCoreHostingModel>
     <DockerDefaultTargetOS>$(DockerDefaultTargetOS)</DockerDefaultTargetOS>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>

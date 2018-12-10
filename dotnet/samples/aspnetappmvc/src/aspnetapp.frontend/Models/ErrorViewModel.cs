@@ -1,6 +1,6 @@
 using System;
 
-namespace aspnetapp.Models
+namespace aspnetapp.frontend.Models
 {
     public class ErrorViewModel
     {

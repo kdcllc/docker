@@ -1,7 +1,7 @@
 using System;
 using Xunit;
 
-namespace aspnetapp.unittests
+namespace aspnetapp.frontend.unittests
 {
     public class UnitTest1
     {

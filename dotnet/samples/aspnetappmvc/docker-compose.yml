@@ -1,11 +1,11 @@
 version: '3.4'
 
 services:
-  aspnetapp:
-    image: ${DOCKER_REGISTRY-}aspnetapp
+  aspnetapp.frontend:
+    image: ${DOCKER_REGISTRY-}aspnetapp.frontend
     build:
       context: .
-      dockerfile: src/aspnetapp.frontend/Dockerfile
+      dockerfile: src/aspnetapp.frontend.frontend/Dockerfile
       args:
        sdkImage: kdcllc/dotnet
        sdkTag: 2.2-sdk
