@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "aspnetapp", "src\aspnetapp.frontend\aspnetapp.frontend.csproj", "{3E9B70A5-1958-4C7C-B009-7E72928AC39C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "aspnetapp.frontend", "src\aspnetapp.frontend\aspnetapp.frontend.csproj", "{3E9B70A5-1958-4C7C-B009-7E72928AC39C}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{AAC57076-7E88-4074-B7D8-82DC9069D646}"
 EndProject
@@ -11,7 +11,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{21B6E718-D75
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{DD2C106C-B7B6-4576-920F-938910EEBBDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aspnetapp.unittests", "test\aspnetapp.unittests\aspnetapp.unittests.csproj", "{8654A770-6E33-418A-A9D6-7D23155B837C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "aspnetapp.unittests", "test\aspnetapp.unittests\aspnetapp.unittests.csproj", "{8654A770-6E33-418A-A9D6-7D23155B837C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{3929D1C5-4EFC-431F-9EC4-CCE751B84FEF}"
+	ProjectSection(SolutionItems) = preProject
+		build\dependencies.props = build\dependencies.props
+		build\sources.props = build\sources.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{10B8ABE5-5747-4A01-B48A-AB98489B0235}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

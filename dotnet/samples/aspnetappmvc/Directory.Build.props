@@ -4,19 +4,19 @@
     <NetCoreToTarget></NetCoreToTarget>
   </PropertyGroup>
   <Choose>
-    
-     <When Condition=" '$(NetCoreVersion)' == 'netcore30-preview' ">
-      <PropertyGroup>
-        <NetCoreToTarget>net30-preview</NetCoreToTarget>
-      </PropertyGroup>
-    </When>   
 
-    <When Condition=" '$(NetCoreVersion)' == 'netcore22'  Or '$(NetCoreVersion)' == ''">
+     <When Condition=" '$(NetCoreVersion)' == 'netcore30' Or '$(NetCoreVersion)' == '' ">
+      <PropertyGroup>
+        <NetCoreToTarget>net30</NetCoreToTarget>
+      </PropertyGroup>
+    </When>
+
+    <When Condition=" '$(NetCoreVersion)' == 'netcore22' ">
       <PropertyGroup>
         <NetCoreToTarget>net22</NetCoreToTarget>
       </PropertyGroup>
     </When>
- 
+
     <When Condition=" '$(NetCoreVersion)' == 'netcore21' ">
       <PropertyGroup>
         <NetCoreToTarget>net21</NetCoreToTarget>

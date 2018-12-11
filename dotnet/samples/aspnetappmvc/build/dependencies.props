@@ -4,14 +4,19 @@
     <NetStandardTargetVersion>netstandard2.0</NetStandardTargetVersion>
     <NetCoreCommonVersion></NetCoreCommonVersion>
     <MicrosoftNETCoreApp></MicrosoftNETCoreApp>
+    <MicrosoftAspNetCoreRazorDesign></MicrosoftAspNetCoreRazorDesign>
   </PropertyGroup>
 
     <Choose>
-    <When Condition=" '$(NetCoreToTarget)' == 'net30-preview' ">
+    <When Condition=" '$(NetCoreToTarget)' == 'net30' ">
       <PropertyGroup Label="Netcore Versions">
           <NetCoreTargetVersion>netcoreapp3.0</NetCoreTargetVersion>
           <NetCoreCommonVersion>3.0.0-preview.18572.1</NetCoreCommonVersion>
           <MicrosoftNETCoreApp>3.0.0-preview-18579-0056</MicrosoftNETCoreApp>
+          <MicrosoftAspNetCoreRazorDesign>3.0.0-alpha1-10670</MicrosoftAspNetCoreRazorDesign>
+          <MicrosoftAspNetCoreIdentityEntityFrameworkCore>$(MicrosoftNETCoreApp)</MicrosoftAspNetCoreIdentityEntityFrameworkCore>
+          <MicrosoftAspNetCoreDiagnosticsEntityFrameworkCore>$(MicrosoftNETCoreApp)</MicrosoftAspNetCoreDiagnosticsEntityFrameworkCore>
+          <MicrosoftAspNetCoreIdentityUI>3.0.0-preview-18571-0006</MicrosoftAspNetCoreIdentityUI>
      </PropertyGroup>
     </When>
     <When Condition=" '$(NetCoreToTarget)' == 'net22' ">
@@ -19,18 +24,26 @@
           <NetCoreTargetVersion>netcoreapp2.2</NetCoreTargetVersion>
           <NetCoreCommonVersion>2.2.0</NetCoreCommonVersion>
           <MicrosoftAspNetCoreMvcApiAnalyzers>$(NetCoreCommonVersion)</MicrosoftAspNetCoreMvcApiAnalyzers>
+          <MicrosoftAspNetCoreRazorDesign>$(NetCoreCommonVersion)</MicrosoftAspNetCoreRazorDesign>
+          <MicrosoftAspNetCoreIdentityUI>$(NetCoreCommonVersion)</MicrosoftAspNetCoreIdentityUI>
+          <MicrosoftAspNetCoreIdentityEntityFrameworkCore>$(NetCoreCommonVersion)</MicrosoftAspNetCoreIdentityEntityFrameworkCore>
+          <MicrosoftAspNetCoreDiagnosticsEntityFrameworkCore>$(NetCoreCommonVersion)</MicrosoftAspNetCoreDiagnosticsEntityFrameworkCore>
       </PropertyGroup>
     </When>
     <When Condition=" '$(NetCoreToTarget)' == 'net21' ">
       <PropertyGroup Label="Netcore Versions">
           <NetCoreTargetVersion>netcoreapp2.1</NetCoreTargetVersion>
           <NetCoreCommonVersion>2.1.1</NetCoreCommonVersion>
+          <MicrosoftAspNetCoreRazorDesign>$(NetCoreCommonVersion)</MicrosoftAspNetCoreRazorDesign>
       </PropertyGroup>
      </When>
   </Choose>
 
   <PropertyGroup Label="NetCore Specific Package Versions">
-    <MicrosoftAspNetCoreRazorDesign>$(NetCoreCommonVersion)</MicrosoftAspNetCoreRazorDesign>
+    <MicrosoftAspNetCoreIdentity>$(NetCoreCommonVersion)</MicrosoftAspNetCoreIdentity>
+    <MicrosoftEntityFrameworkCoreSqlServer>$(NetCoreCommonVersion)</MicrosoftEntityFrameworkCoreSqlServer>
+    <MicrosoftEntityFrameworkCoreTools>$(NetCoreCommonVersion)</MicrosoftEntityFrameworkCoreTools>
+
     <MicrosoftAspNetCoreHttpFeatures>$(NetCoreCommonVersion)</MicrosoftAspNetCoreHttpFeatures>
     <MicrosoftEntityFrameworkCore>$(NetCoreCommonVersion)</MicrosoftEntityFrameworkCore>
     <MicrosoftEntityFrameworkCoreSqlServer>$(NetCoreCommonVersion)</MicrosoftEntityFrameworkCoreSqlServer>
@@ -38,7 +51,7 @@
     <MicrosoftExtensionsConfigurationAbstractions>$(NetCoreCommonVersion)</MicrosoftExtensionsConfigurationAbstractions>
     <MicrosoftExtensionsLoggingAbstractions>$(NetCoreCommonVersion)</MicrosoftExtensionsLoggingAbstractions>
   </PropertyGroup>
- 
+
   <PropertyGroup Label="Testing Package Versions">
     <Moq>4.10.1</Moq>
     <xunit>2.4.1</xunit>

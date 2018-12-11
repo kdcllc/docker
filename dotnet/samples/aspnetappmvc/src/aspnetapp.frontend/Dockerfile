@@ -8,6 +8,7 @@ ARG coreversion=netcore21
 # Build image
 FROM ${sdkImage}:${sdkTag} as builder
 RUN dotnet publish "./src/aspnetapp.frontend/aspnetapp.frontend.csproj" -c Release -p:NetCoreVersion=${coreversion} -o /app
+#RUN npm -v
 
 # App image
 FROM ${runtimeImage}:${runtimeTag} AS final

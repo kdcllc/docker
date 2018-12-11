@@ -7,20 +7,36 @@ ARG image=microsoft/dotnet
 FROM ${image}:${sdkTag} as builder
 LABEL version="1.0" maintainer="kdcllc <info@kingdavidconsulting.com>"
 
+ARG nodeVersion=8.11.3
+
 RUN apt-get -y update &&\
     apt-get -y install wget gnupg2 \
      && rm -rf /var/lib/apt/lists/*
 # NODE
-ENV NODE_VERSION 8.11.3
-ENV NODE_DOWNLOAD_URL https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz
-# https://nodejs.org/download/release/v8.11.3/SHASUMS256.txt
-ENV NODE_DOWNLOAD_SHA 1ea408e9a467ed4571730e160993f67a100e8c347f6f9891c9a83350df2bf2be
+# set some environment variables that we'll use
+# a little further down to install NVM and Node
+ENV NVM_DIR /usr/local/nvm
+# install script comes from https://engineering.circle.com/productive-with-docker-in-20-minutes-8997297a35bb, newer version on nvm script doesn't want to work.
+ENV NVM_VERSION 0.31.2
+ENV NODE_VERSION=${nodeVersion}
 
-RUN curl -SL "$NODE_DOWNLOAD_URL" --output nodejs.tar.gz \
-   && echo "$NODE_DOWNLOAD_SHA nodejs.tar.gz" | sha256sum -c - \
-   && tar -xzf "nodejs.tar.gz" -C /usr/local --strip-components=1 \
-   && rm nodejs.tar.gz \
-   && ln -s /usr/local/bin/node /usr/local/bin/nodejs
+# install nvm for easier nodejs version management
+# https://github.com/creationix/nvm#install-script
+RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v$NVM_VERSION/install.sh | bash
+
+# install node and npm
+RUN . $NVM_DIR/nvm.sh && \
+    nvm install $NODE_VERSION && \
+    nvm alias default $NODE_VERSION && \
+    nvm use default
+
+# add node and npm to path so the commands are available
+ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
+ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
+
+# confirm installation
+RUN node -v
+RUN npm -v
 # END NODE
 
 WORKDIR /app
