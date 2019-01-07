@@ -42,28 +42,34 @@ RUN npm -v
 WORKDIR /app
 
 # copy build dependecies
+ONBUILD RUN echo "Copy build dependecies"
 ONBUILD COPY ./*.sln  ./
 ONBUILD COPY ./*.dcproj ./
 ONBUILD COPY build/* build/
 ONBUILD COPY Directory.Build.props ./
 
 # copy project files
+ONBUILD RUN echo "Copy project files"
 ONBUILD COPY src/*/*.csproj ./
 ONBUILD RUN for file in $(ls *.csproj); do mkdir -p src/${file%.*}/ && mv $file src/${file%.*}/; done
 
 # copy test files
+ONBUILD RUN echo "Copy test files"
 ONBUILD COPY test/*/*.csproj ./
 ONBUILD RUN for file in $(ls *.csproj); do mkdir -p test/${file%.*}/ && mv $file test/${file%.*}/; done
 
 # Debug
 #ONBUILD  RUN ls; cd src; ls; cd aspnetapp.frontend; ls;
 # restore project
+ONBUILD RUN echo "Restore project"
 ONBUILD RUN dotnet restore ./*.sln --force -v n
 
 # build project
+ONBUILD RUN echo "Build project"
 ONBUILD COPY ./src ./src
 ONBUILD COPY ./test ./test
 ONBUILD RUN dotnet build  ./*.sln -p:NetCoreVersion=${coreversion} -c Release
 
 # run tests
+ONBUILD RUN echo "Run tests"
 ONBUILD RUN find ./test -name '*.csproj' -print0 | xargs -L1 -0 dotnet test -c Release --logger trx --results-directory /var/temp --no-build --no-restore
