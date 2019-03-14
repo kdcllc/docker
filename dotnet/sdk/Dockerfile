@@ -42,17 +42,9 @@ RUN npm -v
 WORKDIR /app
 
 # copy build dependecies
-ONBUILD RUN echo "\e[34m1.Copying solution file\e[0m"
-ONBUILD COPY ./*.sln  ./
-
-ONBUILD RUN echo "\e[34m2.Copying  *.dcproj file\e[0m"
-ONBUILD COPY ./*.dcproj ./
-
-ONBUILD RUN echo "\e[34m3.Copying  build/* folder\e[0m"
-ONBUILD COPY build/* build/
-
-ONBUILD RUN echo "\e[34m4.Copying  Directory.Build.props file\e[0m"
-ONBUILD COPY Directory.Build.props ./
+ONBUILD RUN echo "\e[34mCopying solution and props/targets/dcproj files\e[0m"
+ONBUILD COPY ./*.sln ./*.props ./*.targets ./*.dcproj ./
+ONBUILD COPY ./build/* ./build/
 
 # copy project files
 ONBUILD RUN echo "\e[34m5.Copying all source .csproj files\e[0m"
