@@ -8,10 +8,9 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-       image: microsoft/dotnet
-       sdkTag: 2.1-sdk
-       coreversion: netcore21
-       nodeVersion: 10.14.1
+       image: mcr.microsoft.com/dotnet/core/sdk
+       sdkTag: 2.1
+       nodeVersion: 10.16.0
     volumes:
       - ${BUILD_ARTIFACTSTAGINGDIRECTORY:-./TestResults/}:/var/temp
   
@@ -21,10 +20,9 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-       image: microsoft/dotnet
-       sdkTag: 2.2-sdk
-       coreversion: netcore22
-       nodeVersion: 10.14.1
+       image: mcr.microsoft.com/dotnet/core/sdk
+       sdkTag: 2.2
+       nodeVersion: 10.16.0
 
     volumes:
       - ${BUILD_ARTIFACTSTAGINGDIRECTORY:-./TestResults/}:/var/temp
@@ -36,8 +34,8 @@ services:
       dockerfile: Dockerfile
       args:
        image: mcr.microsoft.com/dotnet/core/sdk
-       sdkTag: 3.0
+       sdkTag: 3.0.100-preview6
        coreversion: netcore30
-       nodeVersion: 10.14.1
+       nodeVersion: 10.16.0
     volumes:
       - ${BUILD_ARTIFACTSTAGINGDIRECTORY:-./TestResults/}:/var/temp
