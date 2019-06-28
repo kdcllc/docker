@@ -10,7 +10,7 @@ services:
       args:
        image: mcr.microsoft.com/dotnet/core/sdk
        sdkTag: 2.1
-       nodeVersion: 10.16.0
+       NODE_VERSION: 10.16.0
     volumes:
       - ${BUILD_ARTIFACTSTAGINGDIRECTORY:-./TestResults/}:/var/temp
   
@@ -22,7 +22,7 @@ services:
       args:
        image: mcr.microsoft.com/dotnet/core/sdk
        sdkTag: 2.2
-       nodeVersion: 10.16.0
+       NODE_VERSION: 10.16.0
 
     volumes:
       - ${BUILD_ARTIFACTSTAGINGDIRECTORY:-./TestResults/}:/var/temp
@@ -35,7 +35,6 @@ services:
       args:
        image: mcr.microsoft.com/dotnet/core/sdk
        sdkTag: 3.0.100-preview6
-       coreversion: netcore30
-       nodeVersion: 10.16.0
+       NODE_VERSION: 10.16.0
     volumes:
       - ${BUILD_ARTIFACTSTAGINGDIRECTORY:-./TestResults/}:/var/temp

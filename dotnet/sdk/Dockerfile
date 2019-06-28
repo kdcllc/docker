@@ -1,5 +1,6 @@
 # ARG sdkTag=2.1
 # ARG image=mcr.microsoft.com/dotnet/core/sdk
+## https://hub.docker.com/_/microsoft-dotnet-core-sdk/
 
 ARG sdkTag
 ARG image
@@ -8,26 +9,40 @@ ARG image
 FROM ${image}:${sdkTag} as builder
 LABEL version="2.0" maintainer="kdcllc <info@kingdavidconsulting.com>"
 
-ARG nodeVersion=8.11.3
+ARG NODE_VERSION=8.11.3
 
-ONBUILD ARG coreversion
-ONBUILD ARG framework
-ONBUILD ARG verbose
+# Child container input arguments
+# netcore21, netcore22, netcore30
+# <TargetFramework>$(NetCoreTargetVersion)</TargetFramework>
+ONBUILD ARG DOTNET_VERSION
 
-ONBUILD RUN echo "\e[34m1.Using $coreversion $frameworkd\e[0m"
+# used for verbose restore.
+ONBUILD ARG VERBOSE="false"
 
-ENV NVM_VERSION 0.34.0
-ENV NODE_VERSION=v${nodeVersion}
+# enable or disable running of the tests.
+ONBUILD ARG RUNTESTS="false"
 
+# if PROJECT_PATH is present then only project is being restored and build.
+ONBUILD ARG PROJECT_PATH
+
+ONBUILD RUN  \
+   if [ ! -z $DOTNET_VERSION ]; then \
+      echo "\e[34m1.Using $DOTNET_VERSION\e[0m"; \
+   else \
+      echo "\e[34m1.Using Default TargetFramework(s) \e[0m"; \
+   fi;
+
+# default container update
 RUN apt-get -y update &&\
     apt-get -y install wget gnupg2 &&\
     rm -rf /var/lib/apt/lists/* 
 
 # NODE
-RUN mkdir -p /nvm
+ENV NODE_VERSION=v${NODE_VERSION}
 
-ENV NVM_DIR /nvm
+RUN mkdir -p /nvm
 ENV NVM_VERSION v0.34.0
+ENV NVM_DIR /nvm
 
 # Install nvm with node and npm
 RUN curl https://raw.githubusercontent.com/creationix/nvm/$NVM_VERSION/install.sh | bash \
@@ -68,7 +83,7 @@ ONBUILD RUN for file in $(ls *.csproj); do mkdir -p test/${file%.*}/ && mv $file
 #ONBUILD  RUN ls; cd src; ls; cd aspnetapp.frontend; ls;
 # restore project
 ONBUILD RUN echo "\e[34m5.Restoring ./*.sln\e[0m"
-ONBUILD RUN /scripts/restore.sh $verbose
+ONBUILD RUN /scripts/restore.sh $VERBOSE $PROJECT_PATH
 
 # build project
 ONBUILD RUN echo "\e[34m6.Copy /src/ /src\e[0m"
@@ -78,9 +93,12 @@ ONBUILD RUN echo "\e[34m7.Copy /test/ /test\e[0m"
 ONBUILD COPY ./test ./test
 
 ONBUILD RUN echo "\e[34m8. Build ./*.sln\e[0m"
-ONBUILD RUN /scripts/build.sh $coreversion $framework
 
+ONBUILD RUN /scripts/build.sh $VERBOSE [ -z $DOTNET_VERSION] $DOTNET_VERSION $PROJECT_PATH 
 
 # run tests
-ONBUILD RUN echo "\e[34m9. Run all of the test in ./test/* folder\e[0m"
-ONBUILD RUN find ./test -name '*.csproj' -print0 | xargs -L1 -0 dotnet test -c Release --logger:trx --results-directory /var/temp --no-build --no-restore
+ONBUILD RUN  \
+   if [ "${RUNTESTS}" = "true" ]; then \
+    echo "\e[31m--->Running Tests.\e[0m"; \
+    find ./test -name '*.csproj' -print0 | xargs -L1 -0 dotnet test -c Release --logger:trx --results-directory /var/temp --no-build --no-restore; \
+   fi;
