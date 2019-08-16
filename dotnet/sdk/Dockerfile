@@ -7,9 +7,7 @@ ARG image
 
 # Build image
 FROM ${image}:${sdkTag} as builder
-LABEL version="2.0" maintainer="kdcllc <info@kingdavidconsulting.com>"
-
-ARG NODE_VERSION=8.11.3
+LABEL version="3.0" maintainer="kdcllc <info@kingdavidconsulting.com>"
 
 # Child container input arguments
 # netcore21, netcore22, netcore30
@@ -31,32 +29,6 @@ ONBUILD RUN  \
    else \
       echo "\e[34m1.Using Default TargetFramework(s) \e[0m"; \
    fi;
-
-# default container update
-RUN apt-get -y update &&\
-    apt-get -y install wget gnupg2 &&\
-    rm -rf /var/lib/apt/lists/* 
-
-# NODE
-ENV NODE_VERSION=v${NODE_VERSION}
-
-RUN mkdir -p /nvm
-ENV NVM_VERSION v0.34.0
-ENV NVM_DIR /nvm
-
-# Install nvm with node and npm
-RUN curl https://raw.githubusercontent.com/creationix/nvm/$NVM_VERSION/install.sh | bash \
-    && . $NVM_DIR/nvm.sh \
-    && nvm install $NODE_VERSION \
-    && nvm alias default $NODE_VERSION \
-    && nvm use default
-
-ENV NODE_PATH $NVM_DIR/versions/node/$NODE_VERSION/bin/
-ENV PATH="${NODE_PATH}:${PATH}"
-
-# confirm installation
-RUN node -v && npm -v
-# END NODE
 
 WORKDIR /app
 

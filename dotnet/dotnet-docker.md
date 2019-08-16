@@ -1,5 +1,6 @@
 # Docker Images for Microsoft .NET Core development
-The purpose of this `Dockerfile` is to create a generic .NET build images that is based on Microsoft images. 
+
+The purpose of this `Dockerfile` is to create a generic .NET build images that is based on Microsoft images.
 
 In addition it contains the following:
 
@@ -7,7 +8,8 @@ In addition it contains the following:
 - NVM Manager 0.31.2
 
 ## Usage
-[Aspnet Core Sample App](./dotnet/samples/aspnetappmvc/src/aspnetapp.frontend/Dockerfile)
+
+[AspNetCore Core Sample App](./dotnet/samples/aspnetappmvc/src/aspnetapp.frontend/Dockerfile)
 
 ```dockerfile
     # Build image
@@ -26,19 +28,40 @@ In addition it contains the following:
 ## Building images
 
 Build Docker images
+
+### Individual builds
+
 ```bash
-    docker-compose -f "docker-compose.yml" up -d --build dotnet.builder.21
-    docker-compose -f "docker-compose.yml" up -d --build dotnet.builder.22
-    docker-compose -f "docker-compose.yml" up -d --build dotnet.builder.30
+
+    docker-compose -f "docker-compose-21.yml" up -d --build dotnet.builder.base
+    docker-compose -f "docker-compose-21.yml" up -d --build dotnet.builder.vscode
+    docker-compose -f "docker-compose-21.yml" up -d --build dotnet.builder.dev
 ```
 
-Pushed Docker images to repo
+### Batch builds
+
 ```bash
+    docker-compose -f "docker-compose-21.yml" up -d
+    docker-compose -f "docker-compose-22.yml" up -d
+    docker-compose -f "docker-compose-30.yml" up -d
+```
+
+### Pushed Docker images to repo
+
+```bash
+
+    docker push kdcllc/dotnet:2.1-sdk-base
+    docker push kdcllc/dotnet:2.1-sdk-vscode
     docker push kdcllc/dotnet:2.1-sdk
+
+    docker push kdcllc/dotnet:2.2-sdk-base
+    docker push kdcllc/dotnet:2.2-sdk-vscode
     docker push kdcllc/dotnet:2.2-sdk
+
+    docker push kdcllc/dotnet:3.0-sdk-base
+    docker push kdcllc/dotnet:3.0-sdk-vscode
     docker push kdcllc/dotnet:3.0-sdk
 ```
-
 ## Notes
 
 Original `Node.js` installation script [AspNet Docker](https://github.com/aspnet/aspnet-docker/issues/347#issuecomment-354316642)

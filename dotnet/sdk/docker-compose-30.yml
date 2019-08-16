@@ -1,0 +1,44 @@
+version: '3.4'
+
+# base development sdk with nodejs installed:
+# docker push kdcllc/dotnet:3.0-sdk-base
+#
+# vscode remote container development environment:
+# docker push kdcllc/dotnet:3.0-sdk-vscode
+#
+# docker sdk container for development
+# docker push kdcllc/dotnet:3.0-sdk
+
+services:
+  # base image
+  dotnet.builder.base:
+    image: kdcllc/dotnet:3.0-sdk-base
+    build:
+      context: .
+      dockerfile: Dockerfile.base30
+      args:
+       image: mcr.microsoft.com/dotnet/core/sdk
+       sdkTag: 3.0.100-preview8-buster
+       NODE_VERSION: 10.16.0
+  
+  # vscode image with remote debugging
+  dotnet.builder.vscode:
+    image: kdcllc/dotnet:3.0-sdk-vscode
+    build:
+      context: .
+      dockerfile: Dockerfile.vscode
+      args:
+       image: kdcllc/dotnet
+       sdkTag: 3.0-sdk-base
+  
+  # docker development image
+  dotnet.builder.dev:
+    image: kdcllc/dotnet:3.0-sdk
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+       image: kdcllc/dotnet
+       sdkTag: 3.0-sdk-base
+    volumes:
+      - ${BUILD_ARTIFACTSTAGINGDIRECTORY:-./TestResults/}:/var/temp
