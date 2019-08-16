@@ -1,15 +1,15 @@
 # Docker Images files
+
 This repository contains Dockerfile used to make Docker images used at King David Consulting LLC.
 
-# .NET Core Development
+## Microsoft .NET Core Development
 
--  [Microsoft .NET Core Docker Images](./dotnet-docker.md)
+- [Microsoft .NET Core Docker Images](./dotnet/dotnet-docker.md)
 
-# Machine Learning
+## Machine Learning Docker images
 
 - [Python Image for ML Audio processing](./python-ml/python-ml-docker.md)
 
+## Ionic Android Development
 
-# Ionic Android Development
-
-- [Ionice-Sdk Image for Mobile development](./ionic-sdk/ionic-sdk-docker.md)
+- [Ionic-Sdk Image for Mobile development](./ionic-sdk/ionic-sdk-docker.md)

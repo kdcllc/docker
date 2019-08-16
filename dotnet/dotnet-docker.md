@@ -1,8 +1,8 @@
 # Docker Images for Microsoft .NET Core development
 
-The purpose of this `Dockerfile` is to create a generic .NET build images that is based on Microsoft images.
+The goal is to have a standard shared DotNetCore images for the Web development.
 
-In addition it contains the following:
+SDK Images will have the following installed:
 
 - Node.js installation 10.14.1
 - NVM Manager 0.31.2
@@ -62,6 +62,17 @@ Build Docker images
     docker push kdcllc/dotnet:3.0-sdk-vscode
     docker push kdcllc/dotnet:3.0-sdk
 ```
+
 ## Notes
 
 Original `Node.js` installation script [AspNet Docker](https://github.com/aspnet/aspnet-docker/issues/347#issuecomment-354316642)
+
+## Mapping of the DotNet Core
+
+- [AspNetCore Product Repos](https://github.com/topics/aspnet-product)
+
+- [ASP.NET Core 2.2 Health Checks Explained](https://blog.elmah.io/asp-net-core-2-2-health-checks-explained/)
+
+- [Keeping Secrets Safe in ASP.NET Core with Azure Key Vault and Managed Service Identity](https://anthonychu.ca/post/secrets-aspnet-core-key-vault-msi/)
+- [Use Key Vault from App Service with Managed Service Identity](https://github.com/Azure-Samples/app-service-msi-keyvault-dotnet)
+- [How to use managed identities for App Service and Azure Functions](https://docs.microsoft.com/en-us/azure/app-service/app-service-managed-service-identity)
