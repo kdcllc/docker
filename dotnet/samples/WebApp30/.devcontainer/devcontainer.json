@@ -6,14 +6,13 @@
 	"dockerComposeFile": "../src/docker-compose.vscode.yml",
 	"service": "webapp.vscode",
 	"workspaceFolder": "/workspace",
-    "shutdownAction": "stopCompose",
-
+    // "shutdownAction": "stopCompose",
+	"shutdownAction": "none",
 	"appPort": [5000],
 
-	"postCreateCommand": "dotnet restore",
+	// "postCreateCommand": "dotnet restore",
 
 	"runArgs": [
-
 		// Uncomment the next line if you will use a ptrace-based debugger like C++, Go, and Rust.
 		// "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined",
 
@@ -28,7 +27,9 @@
 		// Uncomment the next line to also sync certs in your .minikube folder
 		// "--mount", "type=bind,source=${env:HOME}${env:USERPROFILE}/.minikube,target=/root/.minikube-localhost",
 		
-		"-e", "SYNC_LOCALHOST_KUBECONFIG=true"
+		"-e", "SYNC_LOCALHOST_KUBECONFIG=true",
+		"-v","/var/run/docker.sock:/var/run/docker.sock",
+		"-v", "$HOME/.kube:/root/.kube-localhost"
 	],
 
 	"extensions": [
@@ -39,16 +40,14 @@
 		"eamodio.gitlens",
 		"formulahendry.dotnet-test-explorer",
 		"streetsidesoftware.code-spell-checker",
-		"docsmsft.docs-authoring-pack",
 		"davidanson.vscode-markdownlint",
 		"humao.rest-client",
-		"visualstudioexptteam.vscodeintellicode",
-		"redhat.vscode-yaml"
+		"visualstudioexptteam.vscodeintellicode"
 	],
 
 	"settings": {
 		"remote.extensionKind": {
 			"ms-azuretools.vscode-docker": "workspace"
 		}
-	}
+	},
 }

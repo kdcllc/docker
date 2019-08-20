@@ -14,7 +14,9 @@ services:
       - ..:/workspace
       - ~/.ssh:/root/.ssh-localhost
       # Forwards the local Docker socket to the container.
-      - /var/run/docker.sock:/var/run/docker.sock 
+      - /var/run/docker.sock:/var/run/docker.sock
+      # kubernetes
+      - $HOME/.kube:/root/.kube-localhost
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
    
