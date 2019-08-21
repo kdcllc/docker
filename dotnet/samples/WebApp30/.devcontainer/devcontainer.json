@@ -5,10 +5,10 @@
 
 	"dockerComposeFile": "../docker-compose.vscode.yml",
 	"service": "webapp.vscode",
-	"workspaceFolder": "/workspace",
+	"workspaceFolder": "/workspace/WebApp30",
     // "shutdownAction": "stopCompose",
 	"shutdownAction": "none",
-	"appPort": [5000],
+	"appPort": [5001],
 
 	// "postCreateCommand": "dotnet restore",
 
