@@ -3,7 +3,7 @@
 {
 	"name": "WebApp30",
 
-	"dockerComposeFile": "../src/docker-compose.vscode.yml",
+	"dockerComposeFile": "../docker-compose.vscode.yml",
 	"service": "webapp.vscode",
 	"workspaceFolder": "/workspace",
     // "shutdownAction": "stopCompose",

@@ -36,7 +36,7 @@ services:
     image: kdcllc/dotnet:3.0-sdk-bionic
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.full
       args:
        image: kdcllc/dotnet
        sdkTag: 3.0-sdk-base-bionic

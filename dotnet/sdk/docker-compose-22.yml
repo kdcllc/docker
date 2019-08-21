@@ -36,7 +36,7 @@ services:
     image: kdcllc/dotnet:2.2-sdk
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.full
       args:
        image: kdcllc/dotnet
        sdkTag: 2.2-sdk-base
