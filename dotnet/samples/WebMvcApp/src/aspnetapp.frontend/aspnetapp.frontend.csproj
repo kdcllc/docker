@@ -6,6 +6,9 @@
     <AspNetCoreHostingModel>$(AspNetCoreHostingModel)</AspNetCoreHostingModel>
     <DockerDefaultTargetOS>$(DockerDefaultTargetOS)</DockerDefaultTargetOS>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+
+    <IdentityUIFrameworkVersion>Bootstrap4</IdentityUIFrameworkVersion>
+
   </PropertyGroup>
 
 

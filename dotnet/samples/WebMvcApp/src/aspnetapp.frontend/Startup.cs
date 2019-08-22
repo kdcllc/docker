@@ -14,6 +14,10 @@ using aspnetapp.frontend.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+#if NETCOREAPP3_0
+using Microsoft.Extensions.Hosting;
+#endif
+
 namespace aspnetapp.frontend
 {
     public class Startup
@@ -39,14 +43,21 @@ namespace aspnetapp.frontend
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>()
-                .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(
+            IApplicationBuilder app
+#if NETCOREAPP2_2
+           , IHostingEnvironment env)
+#elif NETCOREAPP3_0
+           , IWebHostEnvironment env)
+#else
+           )
+#endif
         {
             if (env.IsDevelopment())
             {

@@ -1,0 +1,29 @@
+version: '3.4'
+
+# docker-compose -f "docker-compose.dev.yml" up -d --force-recreate --build
+
+services:
+  aspnetapp.frontend:
+    image: aspnetapp.frontend
+    build:
+      context: .
+      dockerfile: src/aspnetapp.frontend/Dockerfile.build
+      args:
+        # sdkImage: kdcllc/dotnet
+        # sdkTag: 2.2-sdk
+        # runtimeImage: mcr.microsoft.com/dotnet/core/aspnet
+        # runtimeTag: 2.2
+        # DOTNET_VERSION: netcore22
+        # RUNTESTS: "true"
+        # VERBOSE: "false"
+
+        sdkImage: kdcllc/dotnet
+        sdkTag: 3.0-sdk-buster
+        runtimeImage: mcr.microsoft.com/dotnet/core/aspnet
+        runtimeTag: 3.0.0-preview8-buster-slim
+        DOTNET_VERSION: netcore30
+        RUNTESTS: "true"
+        VERBOSE: "false"
+        
+  aspnetapp.sqldb:
+   image: microsoft/mssql-server-linux

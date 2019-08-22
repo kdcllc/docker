@@ -53,7 +53,7 @@ Build Docker images
     docker-compose -f "docker-compose-30-buster.yml" up -d --build dotnet.builder.vscode
     docker-compose -f "docker-compose-30-buster.yml" up -d --build dotnet.builder.dev
 
-    docker-compose -f "docker-compose-30-buster.yml" up -d
+    docker-compose -f "docker-compose-30-buster.yml" up -d --force-recreate
 ```
 
 ### Batch builds

@@ -2,7 +2,6 @@
 
   <PropertyGroup Label="SDK Versions">
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
-    <NetCoreCommonVersion></NetCoreCommonVersion>
     <MicrosoftNETCoreApp></MicrosoftNETCoreApp>
     <MicrosoftAspNetCoreRazorDesign></MicrosoftAspNetCoreRazorDesign>
   </PropertyGroup>
@@ -43,14 +42,14 @@
     <ExtensionsVersion>2.2.*</ExtensionsVersion>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp3.0'">
-    <AspNetCoreVersion>3.0.0-preview6.*</AspNetCoreVersion>
-    <EFCommonVersion>3.0.0-preview6.*</EFCommonVersion>
-    <ExtensionsVersion>3.0.0-preview6.*</ExtensionsVersion>
+  <PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp3.0' Or '$(TargetFramework)' == 'netstandard2.1'">
+    <AspNetCoreVersion>3.0.0-preview8.*</AspNetCoreVersion>
+    <EFCommonVersion>3.0.0-preview8.*</EFCommonVersion>
+    <ExtensionsVersion>3.0.0-preview8.*</ExtensionsVersion>
   </PropertyGroup>
 
   <ItemGroup Label="Core">
-    <PackageReference Update="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.7.9" />
+    <PackageReference Update="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.2" />
 
     <PackageReference Update="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="$(EFCommonVersion)" />
     <PackageReference Update="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="$(EFCommonVersion)" />
@@ -61,7 +60,7 @@
   </ItemGroup>
 
   <ItemGroup Label="Test">
-    <PackageReference Update="Microsoft.NET.Test.Sdk" Version="16.0.1" />
+    <PackageReference Update="Microsoft.NET.Test.Sdk" Version="16.2.0" />
     <PackageReference Update="xunit" Version="2.4.1" />
     <PackageReference Update="xunit.runner.visualstudio" Version="2.4.1" PrivateAssets="true"/>
   </ItemGroup>

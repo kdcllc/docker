@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   aspnetapp.frontend:
-    image: ${DOCKER_REGISTRY-}aspnetapp.frontend
+    image: aspnetapp.frontend
     build:
       context: .
       dockerfile: src/aspnetapp.frontend/Dockerfile
