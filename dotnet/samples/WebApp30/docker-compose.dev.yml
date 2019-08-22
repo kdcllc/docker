@@ -14,7 +14,9 @@ services:
         runtimeTag: 3.0.0-preview8-buster-slim
         RUNTESTS: "true"
         VERBOSE: "false"
-        PROJECT_PATH: "./src/WebApp30/WebApp30.csproj"
+        PROJECT_PATH: /src/WebApp30/WebApp30.csproj
+        SOLUTION_BASE: "false"
+        DOTNET_VERSION: ""
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80

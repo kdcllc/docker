@@ -3,11 +3,11 @@ ARG sdkImage
 ARG sdkTag
 ARG runtimeImage
 ARG runtimeTag
-ARG PROJECT_PATH=/src/WebApp30/WebApp30.csproj
+# ARG PROJECT_PATH=./src/WebApp30/WebApp30.csproj
 
 # Build image
 FROM ${sdkImage}:${sdkTag} as builder
-RUN dotnet publish $PROJECT_PATH -c Release -o /app
+RUN dotnet publish "./src/WebApp30/WebApp30.csproj" -c Release -o /app
 
 # App image
 FROM ${runtimeImage}:${runtimeTag} AS final
