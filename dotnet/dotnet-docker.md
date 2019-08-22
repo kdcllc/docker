@@ -53,7 +53,11 @@ Build Docker images
     docker-compose -f "docker-compose-30-buster.yml" up -d --build dotnet.builder.vscode
     docker-compose -f "docker-compose-30-buster.yml" up -d --build dotnet.builder.dev
 
-    docker-compose -f "docker-compose-30-buster.yml" up -d --force-recreate
+    docker-compose -f "docker-compose-21.yml" up -d --build --force-recreate
+    docker-compose -f "docker-compose-22.yml" up -d --build --force-recreate
+    docker-compose -f "docker-compose-30-buster.yml" up -d --build --force-recreate
+    docker-compose -f "docker-compose-30-bionic.yml" up -d --build --force-recreate
+
 ```
 
 ### Batch builds
@@ -71,7 +75,7 @@ Build Docker images
     docker push kdcllc/dotnet:2.1-sdk-base
     docker push kdcllc/dotnet:2.1-sdk-vscode
     docker push kdcllc/dotnet:2.1-sdk
-
+    
     docker push kdcllc/dotnet:2.2-sdk-base
     docker push kdcllc/dotnet:2.2-sdk-vscode
     docker push kdcllc/dotnet:2.2-sdk
@@ -79,10 +83,12 @@ Build Docker images
     docker push kdcllc/dotnet:3.0-sdk-base-bionic
     docker push kdcllc/dotnet:3.0-sdk-vscode-bionic
     docker push kdcllc/dotnet:3.0-sdk-bionic
+    docker push kdcllc/dotnet:3.0-sdk-light-bionic
 
     docker push kdcllc/dotnet:3.0-sdk-base-buster
     docker push kdcllc/dotnet:3.0-sdk-vscode-buster
     docker push kdcllc/dotnet:3.0-sdk-buster
+    docker push kdcllc/dotnet:3.0-sdk-light-buster
 ```
 
 ## Notes

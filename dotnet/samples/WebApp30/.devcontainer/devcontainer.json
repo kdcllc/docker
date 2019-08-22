@@ -8,7 +8,7 @@
 	"workspaceFolder": "/workspace/WebApp30",
     // "shutdownAction": "stopCompose",
 	"shutdownAction": "none",
-	"appPort": [5001],
+	"appPort": [7001],
 
 	// "postCreateCommand": "dotnet restore",
 
@@ -26,7 +26,7 @@
 
 		// Uncomment the next line to also sync certs in your .minikube folder
 		// "--mount", "type=bind,source=${env:HOME}${env:USERPROFILE}/.minikube,target=/root/.minikube-localhost",
-		
+
 		"-e", "SYNC_LOCALHOST_KUBECONFIG=true",
 		"-v","/var/run/docker.sock:/var/run/docker.sock",
 		"-v", "$HOME/.kube:/root/.kube-localhost"

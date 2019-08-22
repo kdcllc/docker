@@ -3,11 +3,11 @@ ARG sdkImage
 ARG sdkTag
 ARG runtimeImage
 ARG runtimeTag
-ARG DOTNET_VERSION
+ARG PROJECT_PATH=/src/WebApp30/WebApp30.csproj
 
 # Build image
 FROM ${sdkImage}:${sdkTag} as builder
-RUN dotnet publish "./src/aspnetapp.frontend/aspnetapp.frontend.csproj" -c Release -p:NetCoreVersion=${DOTNET_VERSION} -o /app
+RUN dotnet publish $PROJECT_PATH -c Release -o /app
 
 # App image
 FROM ${runtimeImage}:${runtimeTag} AS final
@@ -16,4 +16,4 @@ EXPOSE 80
 EXPOSE 443
 
 COPY --from=builder /app .
-ENTRYPOINT ["dotnet", "aspnetapp.frontend.dll"]
+ENTRYPOINT ["dotnet", "WebApp30.dll"]

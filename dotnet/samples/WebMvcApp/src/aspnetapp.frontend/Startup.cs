@@ -51,7 +51,7 @@ namespace aspnetapp.frontend
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(
             IApplicationBuilder app
-#if NETCOREAPP2_2
+#if NETCOREAPP2_2 || NETCOREAPP2_1
            , IHostingEnvironment env)
 #elif NETCOREAPP3_0
            , IWebHostEnvironment env)
@@ -77,12 +77,25 @@ namespace aspnetapp.frontend
 
             app.UseAuthentication();
 
+#if NETCOREAPP2_2 || NETCOREAPP2_1
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+#elif NETCOREAPP3_0
+            app.UseRouting();
+
+            // https://devblogs.microsoft.com/aspnet/blazor-now-in-official-preview/
+            app.UseEndpoints(routes =>
+            {
+                routes.MapControllers();
+                routes.MapDefaultControllerRoute();
+                routes.MapRazorPages();
+            });
+#endif
         }
     }
 }

@@ -1,5 +1,5 @@
 #-----------------------------------------------------------------------------------------------
-# The purpose of this image is to comnbine AspNetCore 3.0 and AspNetCore 2.2 versions
+# The purpose of this image is to provide node.js install within sdk image
 #-----------------------------------------------------------------------------------------------
 ARG sdkTag
 ARG image

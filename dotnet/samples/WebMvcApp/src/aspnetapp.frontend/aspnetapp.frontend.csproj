@@ -9,12 +9,14 @@
 
     <IdentityUIFrameworkVersion>Bootstrap4</IdentityUIFrameworkVersion>
 
+    <!--https://github.com/aspnet/AspNetCore/issues/11609#issuecomment-515095289-->
+    <ContainerDevelopmentMode>Regular</ContainerDevelopmentMode>
+
   </PropertyGroup>
 
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" Condition="'$(TargetFramework)' == 'netcoreapp2.2'" />
-    <FrameworkReference Include="Microsoft.AspNetCore.App" Condition="'$(TargetFramework)' == 'netcoreapp3.0'" />
 
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" />
 

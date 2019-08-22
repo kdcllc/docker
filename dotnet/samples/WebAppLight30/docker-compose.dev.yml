@@ -14,7 +14,7 @@ services:
       - ASPNETCORE_HTTPS_PORT=5001
     
     volumes:
-        # dotnet dev-certs https -ep C:\Users\Root\AppData\Roaming\ASP.NET\Https\WebApp30.pfx -p fea04367-1bda-4cde-8989-2d1e06dfa48d
+        # dotnet dev-certs https -ep dotnet dev-certs https -ep %userprofile%\AppData\Roaming\ASP.NET\Https\WebApp30.pfx -p fea04367-1bda-4cde-8989-2d1e06dfa48d
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
     

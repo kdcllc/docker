@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 
 namespace aspnetapp.frontend
 {
-    public class Program
+    public sealed class Program
     {
         public static void Main(string[] args)
         {
@@ -19,6 +19,8 @@ namespace aspnetapp.frontend
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                //https://github.com/aspnet/AspNetCore/issues/9704#issuecomment-508273542
+                .UseContentRoot(Path.GetDirectoryName(typeof(Program).Assembly.Location))
                 .UseStartup<Startup>();
     }
 }

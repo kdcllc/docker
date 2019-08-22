@@ -27,6 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		clean.sh = clean.sh
 		Directory.Build.props = Directory.Build.props
 		Directory.Build.targets = Directory.Build.targets
+		docker-compose.dev.yml = docker-compose.dev.yml
 	EndProjectSection
 EndProject
 Global
