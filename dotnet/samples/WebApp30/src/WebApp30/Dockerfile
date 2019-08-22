@@ -1,20 +1,12 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.0.0-preview8-buster-slim AS base
+
+FROM kdcllc/dotnet:3.0-sdk-buster as builder
+RUN dotnet publish "./src/WebApp30/WebApp30.csproj" -c Release  -o /app
+
+
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.0.0-preview8-buster-slim AS final
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/core/sdk:3.0.0-preview8-buster AS build
-WORKDIR /src
-COPY ["src/WebApp30/WebApp30.csproj", "src/WebApp30/"]
-RUN dotnet restore "src/WebApp30/WebApp30.csproj"
-COPY . .
-WORKDIR "/src/src/WebApp30"
-RUN dotnet build "WebApp30.csproj" -c Release -o /app
-
-FROM build AS publish
-RUN dotnet publish "WebApp30.csproj" -c Release -o /app
-
-FROM base AS final
-WORKDIR /app
-COPY --from=publish /app .
+COPY --from=builder /app .
 ENTRYPOINT ["dotnet", "WebApp30.dll"]
