@@ -1,0 +1,23 @@
+version: '3.4'
+
+# docker-compose -f "docker-compose.dev.yml" up -d --force-recreate --build
+services:
+  app:
+    image: webapp30
+    build:
+      context: .
+      dockerfile: src/WebApp30/Dockerfile
+    
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_HTTPS_PORT=5001
+    
+    volumes:
+        # dotnet dev-certs https -ep C:\Users\Root\AppData\Roaming\ASP.NET\Https\WebApp30.pfx -p fea04367-1bda-4cde-8989-2d1e06dfa48d
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+    
+    ports:
+      - "5000:80"
+      - "5001:443"
