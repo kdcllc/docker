@@ -20,7 +20,10 @@ ONBUILD ARG VERBOSE="false"
 ONBUILD ARG NUGET_RESTORE="--disable-parallel"
 
 # if PROJECT_PATH is present then only project is being restored and build.
-ONBUILD ARG PROJECT_PATH=""
+ONBUILD ARG PROJECT_PATH 
+ONBUILD ARG SOLUTION_BASE="true"
+
+ONBUILD RUN echo "\e[31m0.Using $PROJECT_PATH  $SOLUTION_BASE \e[0m"
 
 ONBUILD RUN  \
    if [ ! -z $DOTNET_VERSION ]; then \
@@ -44,13 +47,23 @@ ONBUILD RUN echo "\e[34m3.Copying all source .csproj files\e[0m"
 ONBUILD COPY src/*/*.csproj ./
 ONBUILD RUN for file in $(ls *.csproj); do mkdir -p src/${file%.*}/ && mv $file src/${file%.*}/; done
 
-# restore project
-ONBUILD RUN echo "\e[34m4.Restoring ./*.sln\e[0m"
-ONBUILD RUN /scripts/restore.sh $VERBOSE $PROJECT_PATH $NUGET_RESTORE
+ONBUILD RUN  \ 
+   if [ $SOLUTION_BASE = "true" ]; then \
+      echo "\e[34m4.Restoring ./*.sln\e[0m"; \
+   else \
+      echo "\e[34m4.Restoring Project: $PROJECT_PATH\e[0m"; \
+   fi;
+ONBUILD RUN /scripts/restore.sh $VERBOSE $SOLUTION_BASE $NUGET_RESTORE $PROJECT_PATH 
 
 # build project
 ONBUILD RUN echo "\e[34m5.Copy /src/ /src\e[0m"
 ONBUILD COPY ./src ./src
 
-ONBUILD RUN echo "\e[34m8. Build ....\e[0m"
-ONBUILD RUN /scripts/build.sh $VERBOSE [ -z $DOTNET_VERSION] $DOTNET_VERSION $PROJECT_PATH 
+ONBUILD RUN \
+   if [ $SOLUTION_BASE = "true" ]; then \
+         echo "\e[34m6. Build ./*.sln\e[0m"; \
+         /scripts/build-sln.sh $VERBOSE $DOTNET_VERSION; \
+   else \
+         echo "\e[34m6. Build $PROJECT_PATH\e[0m"; \
+         /scripts/build-proj.sh $VERBOSE $PROJECT_PATH $DOTNET_VERSION; \
+   fi;

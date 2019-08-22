@@ -26,7 +26,7 @@ ONBUILD ARG NUGET_RESTORE="--disable-parallel"
 ONBUILD ARG PROJECT_PATH 
 ONBUILD ARG SOLUTION_BASE="true"
 
-ONBUILD RUN echo "\e[34m0.Using $PROJECT_PATH  $SOLUTION_BASE \e[0m"
+ONBUILD RUN echo "\e[31m0.Using $PROJECT_PATH  $SOLUTION_BASE \e[0m"
 
 ONBUILD RUN  \
    if [ ! -z $DOTNET_VERSION ]; then \
@@ -56,8 +56,6 @@ ONBUILD RUN echo "\e[34m4.Copying all test/* .csproj files\e[0m"
 ONBUILD COPY test/*/*.csproj ./
 ONBUILD RUN for file in $(ls *.csproj); do mkdir -p test/${file%.*}/ && mv $file test/${file%.*}/; done
 
-# Debug
-#ONBUILD  RUN ls; cd src; ls; cd aspnetapp.frontend; ls;
 # restore project
 ONBUILD RUN  \ 
    if [ $SOLUTION_BASE = "true" ]; then \
@@ -65,7 +63,7 @@ ONBUILD RUN  \
    else \
       echo "\e[34m5.Restoring Project: $PROJECT_PATH\e[0m"; \
    fi;
-ONBUILD RUN /scripts/restore.sh $VERBOSE $SOLUTION_BASE $PROJECT_PATH $NUGET_RESTORE
+ONBUILD RUN /scripts/restore.sh $VERBOSE $SOLUTION_BASE $NUGET_RESTORE $PROJECT_PATH 
 
 # build project
 ONBUILD RUN echo "\e[34m6.Copy /src/ /src\e[0m"
@@ -77,14 +75,15 @@ ONBUILD COPY ./test ./test
 ONBUILD RUN \
    if [ $SOLUTION_BASE = "true" ]; then \
          echo "\e[34m8. Build ./*.sln\e[0m"; \
+         /scripts/build-sln.sh $VERBOSE $DOTNET_VERSION; \
    else \
          echo "\e[34m8. Build $PROJECT_PATH\e[0m"; \
+         /scripts/build-proj.sh $VERBOSE $PROJECT_PATH $DOTNET_VERSION; \
    fi;
-ONBUILD RUN /scripts/build.sh $VERBOSE $SOLUTION_BASE $PROJECT_PATH $DOTNET_VERSION 
 
 # run tests
 ONBUILD RUN  \
    if [ "${RUNTESTS}" = "true" ]; then \
-    echo "\e[31m--->Running Tests.\e[0m"; \
+    echo "\e[34m--->Running Tests.\e[0m"; \
     find ./test -name '*.csproj' -print0 | xargs -L1 -0 dotnet test -c Release --logger:trx --results-directory /var/temp --no-build --no-restore; \
    fi;
