@@ -48,10 +48,13 @@ Build Docker images
     docker-compose -f "docker-compose-30-bionic.yml" up -d --build dotnet.builder.base
     docker-compose -f "docker-compose-30-bionic.yml" up -d --build dotnet.builder.vscode
     docker-compose -f "docker-compose-30-bionic.yml" up -d --build dotnet.builder.dev
+    docker-compose -f "docker-compose-30-bionic.yml" up -d --build dotnet.builder.light
+
 
     docker-compose -f "docker-compose-30-buster.yml" up -d --build dotnet.builder.base
     docker-compose -f "docker-compose-30-buster.yml" up -d --build dotnet.builder.vscode
     docker-compose -f "docker-compose-30-buster.yml" up -d --build dotnet.builder.dev
+    docker-compose -f "docker-compose-30-buster.yml" up -d --build dotnet.builder.light
 
     docker-compose -f "docker-compose-21.yml" up -d --build --force-recreate
     docker-compose -f "docker-compose-22.yml" up -d --build --force-recreate
