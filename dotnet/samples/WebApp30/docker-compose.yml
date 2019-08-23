@@ -6,3 +6,9 @@ services:
     build:
       context: .
       dockerfile: src/WebApp30/Dockerfile
+      args:
+        RUNTESTS: "false"
+        VERBOSE: "false"
+        #NUGET_RESTORE: "-f" #overides the --disable-parallel
+        PROJECT_PATH: "/ssrc/WebApp30/WebApp30.csproj"
+        SOLUTION_BASE: "false"
