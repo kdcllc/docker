@@ -20,7 +20,7 @@ services:
         sdkImage: kdcllc/dotnet
         sdkTag: 3.0-sdk-bionic
         runtimeImage: mcr.microsoft.com/dotnet/core/aspnet
-        runtimeTag: 3.0.0-preview8-bionic-slim
+        runtimeTag: 3.0.0-preview8-bionic
         DOTNET_VERSION: netcore30
         RUNTESTS: "true"
         VERBOSE: "false"
