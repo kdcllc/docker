@@ -1,5 +1,6 @@
 version: '3.4'
 
+# Azure DevOps enabled
 # base development sdk with nodejs installed:
 # docker push kdcllc/dotnet:2.2-sdk-base
 #
