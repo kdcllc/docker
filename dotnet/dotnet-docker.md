@@ -9,13 +9,39 @@ SDK Images will have the following installed:
 - Node.js installation 10.14.1
 - NVM Manager 0.31.2
 
-## Tags
+## Image Tags
 
-- `kdcllc/dotnet:3.0-sdk-base-bionic` - based image with Node.js installed and other utilities for web development.
-- `kdcllc/dotnet:3.0-sdk-vscode-bionic` - VSCode Remote Container development incudes, Azure CLI, Docker-Compose, Kubernetes and Helm.
-- `kdcllc/dotnet:3.0-sdk-bionic` - DotNetCore web development, builds and runs tests inside of the container.
+### Dotnet 3.0
 
-## Usage
+- `kdcllc/dotnet:3.0-sdk-base-bionic` - the base image fir web application development includes Node.js and other utilities.
+- `kdcllc/dotnet:3.0-sdk-vscode-bionic` - the VSCode Remote Container image used for VSCode development and it incudes, Azure CLI, Docker-Compose, Kubernetes and Helm.
+- `kdcllc/dotnet:3.0-sdk-bionic` - the template based DotNetCore development, builds and runs tests inside of the container.
+- `kdcllc/dotnet:3.0-sdk-light-bionic` - the template light version of the based DotNetCore development.
+
+- `kdcllc/dotnet:3.0-sdk-base-buster` - the base image fir web application development includes Node.js and other utilities.
+- `kdcllc/dotnet:3.0-sdk-vscode-buster` - the VSCode Remote Container image used for VSCode development and it incudes, Azure CLI, Docker-Compose, Kubernetes and Helm.
+- `kdcllc/dotnet:3.0-sdk-buster` - the template based DotNetCore development, builds and runs tests inside of the container.
+- `kdcllc/dotnet:3.0-sdk-light-buster` - the template light version of the based DotNetCore development.
+
+### Dotnet 2.x
+
+- `kdcllc/dotnet:2.2-sdk-base` - the base image fir web application development includes Node.js and other utilities.
+- `kdcllc/dotnet:2.2-sdk-vscode` - the VSCode Remote Container image used for VSCode development.
+- `kdcllc/dotnet:2.2-sdk` - the template based DotNetCore development, builds and runs tests inside of the container.
+
+- `kdcllc/dotnet:2.1-sdk-base` - the base image fir web application development includes Node.js and other utilities.
+- `kdcllc/dotnet:2.1-sdk-vscode` - the VSCode Remote Container image used for VSCode development.
+- `kdcllc/dotnet:2.1-sdk` - the template based DotNetCore development, builds and runs tests inside of the container.
+
+## Sample projects
+
+These project serve as a templates for the Docker images. In case of `WebMvcApp` it utilized the required structure for the SDK image to be used.
+
+- [WebApp30](./dotnet/samples/WebApp30/README.md) AspNetCore 3.0 Web Application demonstrates VS Code Containers, dev build and Visual Studio.NET debugging.
+- [WebAppLight30](./dotnet/samples/WebAppLight30/README.md)
+- [WebMvcApp](./dotnet/samples/WebMvcApp/README.md) AspNetCore 2.x or 3.0 Web application based on `NetCoreVersion` msbuild attribute.
+
+### Usage
 
 [AspNetCore Core Sample App](./dotnet/samples/aspnetappmvc/src/aspnetapp.frontend/Dockerfile)
 

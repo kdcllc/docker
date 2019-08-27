@@ -6,4 +6,4 @@ This example demonstrates `King David Consulting LLC` Docker images to be used f
 
 - Building and running Docker container with `kdcllc/dotnet:3.0-sdk-light-buster` image
 
-- 
+- Building and running Application in Docker Container from Visual Studio.Net
