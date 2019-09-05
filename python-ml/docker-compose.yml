@@ -1,0 +1,25 @@
+version: '3.4'
+
+# Azure DevOps disabled
+# base development sdk with nodejs installed:
+# docker push kdcllc/python:conda-base
+#
+# vscode remote container development environment:
+# docker push kdcllc/dotnet:2.1-sdk-vscode
+#
+# docker sdk container for development
+# docker push kdcllc/dotnet:2.1-sdk
+
+services:
+  # base image
+  python.builder.base:
+    image: kdcllc/python:conda-base
+    build:
+      context: .
+      dockerfile: ubuntu/Dockerfile.conda.base
+  # vscode image
+  python.builder.vscode:
+    image: kdcllc/python:conda-vscode
+    build:
+      context: .
+      dockerfile: ubuntu/Dockerfile.conda.vscode
