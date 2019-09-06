@@ -1,0 +1,32 @@
+FROM ubuntu:18.04
+
+LABEL maintainer="King David Consulting LLC <info@kingdavidconsulting.com>"
+
+# jupyter notebook --ip 0.0.0 --allow-root --no-browser
+
+# Avoid warnings by switching to noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
+
+ENV ANACONDA_FILE Anaconda3-2019.07-Linux-x86_64.sh
+ENV ANACONDA_PATH /opt/anaconda3
+
+ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
+ENV PATH $ANACONDA_PATH/bin:$PATH
+
+RUN apt-get update --fix-missing \
+    && apt-get -y install --no-install-recommends apt-utils dialog 2>&1 \
+    #
+    # Verify git, process tools, lsb-release (common in install instructions for CLIs) installed
+    && apt-get -y install git iproute2 procps iproute2 lsb-release \
+    && apt-get install -y wget bzip2 ca-certificates git man
+
+RUN wget --quiet https://repo.anaconda.com/archive/$ANACONDA_FILE && chmod +x $ANACONDA_FILE \
+    && ./$ANACONDA_FILE -b -p $ANACONDA_PATH && rm $ANACONDA_FILE \
+    && ln -s $ANACONDA_PATH/etc/profile.d/conda.sh /etc/profile.d/conda.sh \
+    && echo ". $ANACONDA_PATH/etc/profile.d/conda.sh" >> ~/.bashrc \
+    && echo "conda activate base" >> ~/.bashrc
+
+# Clean up
+RUN apt-get autoremove -y \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/*
