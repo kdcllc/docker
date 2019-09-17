@@ -1,6 +1,6 @@
 version: '3.4'
 
-# Azure DevOps enabled (3.0 preview 9)
+# Azure DevOps enabled (3.0 rc1)
 # base development sdk with nodejs installed:
 # docker push kdcllc/dotnet:3.0-sdk-base-bionic
 #
@@ -19,7 +19,7 @@ services:
       dockerfile: Dockerfile.base30
       args:
        image: mcr.microsoft.com/dotnet/core/sdk
-       sdkTag: 3.0.100-preview9-bionic
+       sdkTag: 3.0-bionic
        NODE_VERSION: 12.10.0
   
   # vscode image with remote debugging

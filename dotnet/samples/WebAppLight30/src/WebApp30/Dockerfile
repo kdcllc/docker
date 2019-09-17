@@ -4,7 +4,7 @@ RUN dotnet publish "./src/WebApp30/WebApp30.csproj" -c Release -o /app
 RUN echo npm -v
 
 # App image
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.0.0-preview8-buster-slim AS final
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 AS final
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
