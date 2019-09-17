@@ -19,7 +19,7 @@ services:
       dockerfile: Dockerfile.base30
       args:
        image: mcr.microsoft.com/dotnet/core/sdk
-       sdkTag: 3.0.0-rc1-bionic
+       sdkTag: 3.0-bionic
        NODE_VERSION: 12.10.0
   
   # vscode image with remote debugging

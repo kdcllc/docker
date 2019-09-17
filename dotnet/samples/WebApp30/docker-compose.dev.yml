@@ -9,9 +9,9 @@ services:
       dockerfile: src/WebApp30/Dockerfile.build
       args:
         sdkImage: kdcllc/dotnet
-        sdkTag: 3.0-sdk-buster
+        sdkTag: 3.0
         runtimeImage: mcr.microsoft.com/dotnet/core/aspnet
-        runtimeTag: 3.0.0-rc1-buster-slim
+        runtimeTag: 3.0
         RUNTESTS: "true"
         VERBOSE: "false"
         PROJECT_PATH: /src/WebApp30/WebApp30.csproj
