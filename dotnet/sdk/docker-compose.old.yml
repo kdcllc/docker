@@ -28,13 +28,13 @@ services:
       - ${BUILD_ARTIFACTSTAGINGDIRECTORY:-./TestResults/}:/var/temp
   
   dotnet.builder.30:
-    image: kdcllc/dotnet:3.0-sdk
+    image: kdcllc/dotnet:3.0-sdk-buster
     build:
       context: .
       dockerfile: Dockerfile
       args:
        image: mcr.microsoft.com/dotnet/core/sdk
-       sdkTag: 3.0.100-preview6
+       sdkTag: 3.0.0-rc1-
        NODE_VERSION: 10.16.0
     volumes:
       - ${BUILD_ARTIFACTSTAGINGDIRECTORY:-./TestResults/}:/var/temp

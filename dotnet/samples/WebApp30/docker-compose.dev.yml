@@ -11,7 +11,7 @@ services:
         sdkImage: kdcllc/dotnet
         sdkTag: 3.0-sdk-buster
         runtimeImage: mcr.microsoft.com/dotnet/core/aspnet
-        runtimeTag: 3.0.0-preview8-buster-slim
+        runtimeTag: 3.0.0-rc1-buster-slim
         RUNTESTS: "true"
         VERBOSE: "false"
         PROJECT_PATH: /src/WebApp30/WebApp30.csproj
