@@ -43,9 +43,9 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp3.0' Or '$(TargetFramework)' == 'netstandard2.1'">
-    <AspNetCoreVersion>3.0.0-rc1.*</AspNetCoreVersion>
-    <EFCommonVersion>3.0.0-rc1.*</EFCommonVersion>
-    <ExtensionsVersion>3.0.0-rc1.*</ExtensionsVersion>
+    <AspNetCoreVersion>3.0.0</AspNetCoreVersion>
+    <EFCommonVersion>3.0.0</EFCommonVersion>
+    <ExtensionsVersion>3.0.0</ExtensionsVersion>
   </PropertyGroup>
 
   <ItemGroup Label="Core">
