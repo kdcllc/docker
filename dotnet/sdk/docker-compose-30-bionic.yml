@@ -1,6 +1,6 @@
 version: '3.4'
 
-# Azure DevOps enabled (3.0 rc1)
+# Azure DevOps enabled (3.0 released)
 # base development sdk with nodejs installed:
 # docker push kdcllc/dotnet:3.0-sdk-base-bionic
 #
