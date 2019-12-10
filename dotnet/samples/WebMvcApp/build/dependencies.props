@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <Choose>
-    <When Condition=" '$(NetCoreToTarget)' == 'net30' ">
+    <When Condition=" '$(NetCoreToTarget)' == 'net31' ">
       <PropertyGroup Label="Netcore Versions">
-        <NetCoreTargetVersion>netcoreapp3.0</NetCoreTargetVersion>
+        <NetCoreTargetVersion>netcoreapp3.1</NetCoreTargetVersion>
       </PropertyGroup>
     </When>
     <When Condition=" '$(NetCoreToTarget)' == 'net22' ">
@@ -42,10 +42,10 @@
     <ExtensionsVersion>2.2.*</ExtensionsVersion>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp3.0' Or '$(TargetFramework)' == 'netstandard2.1'">
-    <AspNetCoreVersion>3.0.0</AspNetCoreVersion>
-    <EFCommonVersion>3.0.0</EFCommonVersion>
-    <ExtensionsVersion>3.0.0</ExtensionsVersion>
+  <PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1' Or '$(TargetFramework)' == 'netstandard2.1'">
+    <AspNetCoreVersion>3.1.0</AspNetCoreVersion>
+    <EFCommonVersion>3.1.0</EFCommonVersion>
+    <ExtensionsVersion>3.1.0</ExtensionsVersion>
   </PropertyGroup>
 
   <ItemGroup Label="Core">

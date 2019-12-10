@@ -53,7 +53,7 @@ namespace aspnetapp.frontend
             IApplicationBuilder app
 #if NETCOREAPP2_2 || NETCOREAPP2_1
            , IHostingEnvironment env)
-#elif NETCOREAPP3_0
+#elif NETCOREAPP3_1
            , IWebHostEnvironment env)
 #else
            )

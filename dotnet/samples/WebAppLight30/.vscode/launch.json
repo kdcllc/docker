@@ -9,7 +9,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/src/WebApp30/bin/Debug/netcoreapp3.0/WebApp30.dll",
+            "program": "${workspaceFolder}/src/WebApp30/bin/Debug/netcoreapp3.1/WebApp30.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/",
             "console": "internalConsole",
