@@ -1,37 +1,53 @@
 # Docker Images for Microsoft .NET Core development
 
-The goal is to have a standard shared DotNetCore images for the Web development.
+The goal is to have a standard shared DotNetCore images for the Web development that provides with custom `ONBUILD` actions for DotNetCore projects.
 
 [Official Microsoft .NET Core SDK hub tags info](https://hub.docker.com/_/microsoft-dotnet-core-sdk/)
 
-SDK Images will have the following installed:
 
-- Node.js installation 10.14.1
-- NVM Manager 0.31.2
+## Label 4.0 Image Tags
 
-## Image Tags
+- `kdcllc/dotnet-sdk-base:latest`
+The base images for Web Application development includes Node.js and other utilities.
+Installs Node.js installation 12.13.1 (Alpine nodejs v10.16.3)
 
-### Dotnet 3.0
+| Tag | Other Tags |
+| --- | ---|
+| 2.1 | 2.1-stretch (Debian 9) |
+| 2.2 | 2.2-stretch (Debian 9) |
+| 2.2-bionic | 2.2-bionic (Ubuntu 18.04) |
+| 3.0 | 3.0-buster (Debian 10) |
+| 3.0-bionic | 3.0-bionic (Ubuntu 18.04) |
+| 3.0-alpine | 3.0-alpine (Alpine 3.10) |
+| 3.1 | 3.1-buster, `latest` (Debian 10) |
+| 3.1-bionic | 3.1-bionic (Ubuntu 18.04) |
+| 3.1-alpine | 3.1-alpine (Alpine 3.10) |
 
-- `kdcllc/dotnet:3.0-sdk-base-bionic` - the base image fir web application development includes Node.js and other utilities.
-- `kdcllc/dotnet:3.0-sdk-vscode-bionic` - the VSCode Remote Container image used for VSCode development and it incudes, Azure CLI, Docker-Compose, Kubernetes and Helm.
-- `kdcllc/dotnet:3.0-sdk-bionic` - the template based DotNetCore development, builds and runs tests inside of the container.
-- `kdcllc/dotnet:3.0-sdk-light-bionic` - the template light version of the based DotNetCore development.
+- `kdcllc/dotnet-sdk`
+The template based DotNetCore development, builds and runs tests inside of the container.
 
-- `kdcllc/dotnet:3.0-sdk-base-buster` - the base image fir web application development includes Node.js and other utilities.
-- `kdcllc/dotnet:3.0-sdk-vscode-buster` - the VSCode Remote Container image used for VSCode development and it incudes, Azure CLI, Docker-Compose, Kubernetes and Helm.
-- `kdcllc/dotnet:3.0-sdk-buster` - the template based DotNetCore development, builds and runs tests inside of the container.
-- `kdcllc/dotnet:3.0-sdk-light-buster` - the template light version of the based DotNetCore development.
+- `kdcllc/dotnet-sdk-mini`
 
-### Dotnet 2.x
+The template version `mini` of the based DotNetCore development.
 
-- `kdcllc/dotnet:2.2-sdk-base` - the base image fir web application development includes Node.js and other utilities.
-- `kdcllc/dotnet:2.2-sdk-vscode` - the VSCode Remote Container image used for VSCode development.
-- `kdcllc/dotnet:2.2-sdk` - the template based DotNetCore development, builds and runs tests inside of the container.
+- `kdcllc/dotnet-sdk-vscode`
+The VSCode Remote Container image used for VSCode development and it incudes, Azure CLI, Docker-Compose, Kubernetes and Helm.
 
-- `kdcllc/dotnet:2.1-sdk-base` - the base image fir web application development includes Node.js and other utilities.
-- `kdcllc/dotnet:2.1-sdk-vscode` - the VSCode Remote Container image used for VSCode development.
-- `kdcllc/dotnet:2.1-sdk` - the template based DotNetCore development, builds and runs tests inside of the container.
+| Tag | Other Tags |
+| --- | ---|
+| 2.1 | 2.1-stretch (Debian 9) |
+| 2.2 | 2.2-stretch (Debian 9) |
+| 2.2-bionic | 2.2-bionic (Ubuntu 18.04) |
+| 3.0 | 3.0-buster (Debian 10) |
+| 3.0-bionic | 3.0-bionic (Ubuntu 18.04) |
+| 3.1 | 3.1-buster, `latest` (Debian 10) |
+| 3.1-bionic | 3.1-bionic (Ubuntu 18.04) |
+
+```bash
+    .\build-base.ps1 "2.1-stretch"
+
+    .\build-base.ps1 -tag "3.0-alpine" -image "base.alpine"
+```
 
 ## Sample projects
 
@@ -59,68 +75,20 @@ These project serve as a templates for the Docker images. In case of `WebMvcApp`
 
 ```
 
-## Building images
-
-Build Docker images
-
-### Individual builds
-
-```bash
-
-    docker-compose -f "docker-compose-21.yml" up -d --build dotnet.builder.base
-    docker-compose -f "docker-compose-21.yml" up -d --build dotnet.builder.vscode
-    docker-compose -f "docker-compose-21.yml" up -d --build dotnet.builder.dev
-
-    docker-compose -f "docker-compose-30-bionic.yml" up -d --build dotnet.builder.base
-    docker-compose -f "docker-compose-30-bionic.yml" up -d --build dotnet.builder.vscode
-    docker-compose -f "docker-compose-30-bionic.yml" up -d --build dotnet.builder.dev
-    docker-compose -f "docker-compose-30-bionic.yml" up -d --build dotnet.builder.light
-
-
-    docker-compose -f "docker-compose-30-buster.yml" up -d --build dotnet.builder.base
-    docker-compose -f "docker-compose-30-buster.yml" up -d --build dotnet.builder.vscode
-    docker-compose -f "docker-compose-30-buster.yml" up -d --build dotnet.builder.dev
-    docker-compose -f "docker-compose-30-buster.yml" up -d --build dotnet.builder.light
-
-    docker-compose -f "docker-compose-21.yml" up -d --build --force-recreate
-    docker-compose -f "docker-compose-22.yml" up -d --build --force-recreate
-    docker-compose -f "docker-compose-30-buster.yml" up -d --build --force-recreate
-    docker-compose -f "docker-compose-30-bionic.yml" up -d --build --force-recreate
-
-```
-
-### Batch builds
-
-```bash
-    docker-compose -f "docker-compose-21.yml" up -d
-    docker-compose -f "docker-compose-22.yml" up -d
-    docker-compose -f "docker-compose-30.yml" up -d
-```
-
-### Pushed Docker images to repo
-
-```bash
-
-    docker push kdcllc/dotnet:2.1-sdk-base
-    docker push kdcllc/dotnet:2.1-sdk-vscode
-    docker push kdcllc/dotnet:2.1-sdk
-    
-    docker push kdcllc/dotnet:2.2-sdk-base
-    docker push kdcllc/dotnet:2.2-sdk-vscode
-    docker push kdcllc/dotnet:2.2-sdk
-
-    docker push kdcllc/dotnet:3.0-sdk-base-bionic
-    docker push kdcllc/dotnet:3.0-sdk-vscode-bionic
-    docker push kdcllc/dotnet:3.0-sdk-bionic
-    docker push kdcllc/dotnet:3.0-sdk-light-bionic
-
-    docker push kdcllc/dotnet:3.0-sdk-base-buster
-    docker push kdcllc/dotnet:3.0-sdk-vscode-buster
-    docker push kdcllc/dotnet:3.0-sdk-buster
-    docker push kdcllc/dotnet:3.0-sdk-light-buster
-```
-
 ## Notes
+
+Clean up docker local system
+
+```bash
+    # clean up system
+    docker system prune -f
+    docker container prune -f
+
+    # list all images
+    docker images -f dangling=true
+    # clean up
+    docker rmi -f $(docker images -f "dangling=true" -q)
+```
 
 Original `Node.js` installation script [AspNet Docker](https://github.com/aspnet/aspnet-docker/issues/347#issuecomment-354316642)
 

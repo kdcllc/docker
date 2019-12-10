@@ -7,18 +7,15 @@ ARG image
 
 # Build image
 FROM ${image}:${sdkTag} as builder
-LABEL version="3.0" maintainer="kdcllc <info@kingdavidconsulting.com>"
+LABEL version="4.0" maintainer="kdcllc <info@kingdavidconsulting.com>"
 
 # Child container input arguments
 # netcore21, netcore22, netcore30
 # <TargetFramework>$(NetCoreTargetVersion)</TargetFramework>
-ONBUILD ARG DOTNET_VERSION=""
+ONBUILD ARG DOTNET_VERSION="" 
 
 # used for verbose restore.
 ONBUILD ARG VERBOSE="false"
-
-# enable or disable running of the tests.
-ONBUILD ARG RUNTESTS="false"
 
 ONBUILD ARG NUGET_RESTORE="--disable-parallel"
 
@@ -42,48 +39,31 @@ COPY ./scripts/* /scripts/
 RUN chmod +x /scripts/*.sh
 
 # copy build dependecies
-ONBUILD RUN echo "\e[34m2.Copying solution and props/targets/dcproj files\e[0m"
-ONBUILD COPY ./*.sln ./*.props ./*.targets ./*.dcproj ./
-ONBUILD COPY ./build/* ./build/
+ONBUILD RUN echo "\e[34m2.Copying solution file\e[0m"
+ONBUILD COPY ./*.sln ./
 
 # copy project files
 ONBUILD RUN echo "\e[34m3.Copying all source .csproj files\e[0m"
 ONBUILD COPY src/*/*.csproj ./
 ONBUILD RUN for file in $(ls *.csproj); do mkdir -p src/${file%.*}/ && mv $file src/${file%.*}/; done
 
-# copy test files
-ONBUILD RUN echo "\e[34m4.Copying all test/* .csproj files\e[0m"
-ONBUILD COPY test/*/*.csproj ./
-ONBUILD RUN for file in $(ls *.csproj); do mkdir -p test/${file%.*}/ && mv $file test/${file%.*}/; done
-
-# restore project
 ONBUILD RUN  \ 
    if [ $SOLUTION_BASE = "true" ]; then \
-      echo "\e[34m5.Restoring ./*.sln\e[0m"; \
+      echo "\e[34m4.Restoring ./*.sln\e[0m"; \
    else \
-      echo "\e[34m5.Restoring Project: $PROJECT_PATH\e[0m"; \
+      echo "\e[34m4.Restoring Project: $PROJECT_PATH\e[0m"; \
    fi;
 ONBUILD RUN /scripts/restore.sh $VERBOSE $SOLUTION_BASE $NUGET_RESTORE $PROJECT_PATH 
 
 # build project
-ONBUILD RUN echo "\e[34m6.Copy /src/ /src\e[0m"
+ONBUILD RUN echo "\e[34m5.Copy /src/ /src\e[0m"
 ONBUILD COPY ./src ./src
-
-ONBUILD RUN echo "\e[34m7.Copy /test/ /test\e[0m"
-ONBUILD COPY ./test ./test
 
 ONBUILD RUN \
    if [ $SOLUTION_BASE = "true" ]; then \
-         echo "\e[34m8. Build ./*.sln\e[0m"; \
+         echo "\e[34m6. Build ./*.sln\e[0m"; \
          /scripts/build-sln.sh $VERBOSE $DOTNET_VERSION; \
    else \
-         echo "\e[34m8. Build $PROJECT_PATH\e[0m"; \
+         echo "\e[34m6. Build $PROJECT_PATH\e[0m"; \
          /scripts/build-proj.sh $VERBOSE $PROJECT_PATH $DOTNET_VERSION; \
-   fi;
-
-# run tests
-ONBUILD RUN  \
-   if [ "${RUNTESTS}" = "true" ]; then \
-    echo "\e[34m--->Running Tests.\e[0m"; \
-    find ./test -name '*.csproj' -print0 | xargs -L1 -0 dotnet test -c Release --logger:trx --results-directory /var/temp --no-build --no-restore; \
    fi;
