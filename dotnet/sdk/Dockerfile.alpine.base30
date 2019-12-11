@@ -1,0 +1,18 @@
+#-----------------------------------------------------------------------------------------------
+# The purpose of this image is to comnbine AspNetCore 3.0 alpine
+#-----------------------------------------------------------------------------------------------
+ARG sdkTag
+ARG image
+
+# Build image
+FROM ${image}:${sdkTag} as builder
+LABEL version="4.0" maintainer="kdcllc <info@kingdavidconsulting.com>"
+
+# default container update
+RUN apk update && apk upgrade && \
+    apk add --update nodejs npm && \
+    apk add --no-cache -U wget curl bash
+
+# confirm installation
+RUN node -v 
+RUN npm -v

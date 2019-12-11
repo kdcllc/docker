@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  webapp30:
+    image: ${DOCKER_REGISTRY-}webapp30
+    build:
+      context: .
+      dockerfile: src/WebApp30/Dockerfile

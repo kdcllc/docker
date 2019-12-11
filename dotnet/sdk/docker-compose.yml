@@ -1,0 +1,53 @@
+version: '3.4'
+
+services:
+  # base image
+  # docker-compose -f "docker-compose-sdk-base.yml" up -d
+  # example $Env:TAG="2.1"
+  # docker push kdcllc/dotnet-sdk-base:$Env:TAG
+  base:
+    image: kdcllc/dotnet-sdk-base:${TAG}
+    build:
+      context: .
+      dockerfile: Dockerfile.base
+      args:
+       image: mcr.microsoft.com/dotnet/core/sdk
+       sdkTag: ${TAG}
+       NODE_VERSION: 12.13.1
+  
+  # base image
+  base.alpine:
+    image: kdcllc/dotnet-sdk-base:${TAG}
+    build:
+      context: .
+      dockerfile: Dockerfile.alpine.base30
+      args:
+       image: mcr.microsoft.com/dotnet/core/sdk
+       sdkTag: ${TAG}
+
+  # vscode image with remote debugging
+  vscode:
+    image: kdcllc/dotnet-sdk-vscode:${TAG}
+    build:
+      context: .
+      dockerfile: Dockerfile.vscode
+      args:
+       image: kdcllc/dotnet-sdk-base
+       sdkTag: ${TAG}
+
+  dev:
+    image: kdcllc/dotnet-sdk:${TAG}
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      args:
+       image: kdcllc/dotnet-sdk-base
+       sdkTag: ${TAG}
+  mini:
+    image: kdcllc/dotnet-sdk-mini:${TAG}
+    build:
+      context: .
+      dockerfile: Dockerfile.mini
+      args:
+       image: kdcllc/dotnet-sdk-base
+       sdkTag: ${TAG}

@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: src/aspnetapp.frontend/Dockerfile
       args:
-       DOTNET_VERSION: netcore30
+       DOTNET_VERSION: netcore31
        RUNTESTS: "false"
        VERBOSE: "false"
        #NUGET_RESTORE: "-f"

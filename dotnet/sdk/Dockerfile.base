@@ -6,7 +6,7 @@ ARG image
 
 # Build image
 FROM ${image}:${sdkTag} as builder
-LABEL version="3.0" maintainer="kdcllc <info@kingdavidconsulting.com>"
+LABEL version="4.0" maintainer="kdcllc <info@kingdavidconsulting.com>"
 
 ARG NODE_VERSION=8.11.3
 

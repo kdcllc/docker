@@ -8,10 +8,10 @@ services:
       context: .
       dockerfile: src/WebApp30/Dockerfile.build
       args:
-        sdkImage: kdcllc/dotnet
-        sdkTag: 3.0
+        sdkImage: kdcllc/dotnet-sdk
+        sdkTag: 3.1
         runtimeImage: mcr.microsoft.com/dotnet/core/aspnet
-        runtimeTag: 3.0
+        runtimeTag: 3.1
         RUNTESTS: "true"
         VERBOSE: "false"
         PROJECT_PATH: /src/WebApp30/WebApp30.csproj
