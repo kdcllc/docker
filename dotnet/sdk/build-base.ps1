@@ -1,3 +1,5 @@
+# https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies
+# Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process
 param (
 
     # The dotnet tag to build
