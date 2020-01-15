@@ -1,13 +1,22 @@
 
-# BUILD:  docker build --rm -f "Dockerfile.vscode" -t kdcllc/golang-sdk-vscode:v1
-# https://raw.githubusercontent.com/microsoft/vscode-remote-try-go/master/.devcontainer/Dockerfile
-
 #-------------------------------------------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See https://go.microsoft.com/fwlink/?linkid=2090316 for license information.
 #-------------------------------------------------------------------------------------------------------------
 
+#-------------------------------------------------------------------------------------------------------------
+#
+# BUILD:  
+#       docker build --rm -f "Dockerfile.vscode.base" -t kdcllc/golang-sdk-vscode:base .
+#       docker build --rm -f "Dockerfile.vscode.base" -t kdcllc/golang-sdk-vscode:v1
+#
+# https://raw.githubusercontent.com/microsoft/vscode-remote-try-go/master/.devcontainer/Dockerfile
+#
+#-------------------------------------------------------------------------------------------------------------
+
 FROM golang:1
+
+LABEL version="4.0" maintainer="kdcllc <info@kingdavidconsulting.com>"
 
 # Avoid warnings by switching to noninteractive
 ENV DEBIAN_FRONTEND=noninteractive

@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  vscode.base:
+    image: kdcllc/golang-sdk-vscode:base
+    build:
+      context: .
+      dockerfile: Dockerfile.vscode.base
+
+  vscode.k8s:
+    image: kdcllc/golang-sdk-vscode:vscode.k8s
+    build: 
+      context: .
+      dockerfile: Dockerfile.vscode.k8s
+      args: 
+        - COMPOSE_VERSION: 1.24.0
