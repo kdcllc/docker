@@ -24,6 +24,8 @@ The goal is to have a standard shared DotNetCore images for the Web development 
 | 3.1-alpine | | (Alpine 3.10) |
 
 ```ps1
+     Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process
+
     .\build-base.ps1 -tag "3.1" -image "base"
     .\build-base.ps1 -tag "latest" -image "base"
     .\build-base.ps1 -tag "3.1-buster" -image "base"
