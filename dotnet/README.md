@@ -20,8 +20,11 @@ The goal is to have a standard shared DotNetCore images for the Web development 
 | 3.0-bionic | | (Ubuntu 18.04) |
 | 3.0-alpine | | (Alpine 3.10) |
 | 3.1 | 3.1-buster, `latest` | (Debian 10) |
+| 5.0 | 5.0-buster-slim | (Debian 10) |
 | 3.1-bionic | | (Ubuntu 18.04) |
+| 5.0-focal | | (Ubuntu 20.04) |
 | 3.1-alpine | | (Alpine 3.10) |
+| 5.0-alpine | | (Alpine 3.11) |
 
 ```ps1
      Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process
@@ -31,6 +34,11 @@ The goal is to have a standard shared DotNetCore images for the Web development 
     .\build-base.ps1 -tag "3.1-buster" -image "base"
     .\build-base.ps1 -tag "3.1-bionic" -image "base"
     .\build-base.ps1 -tag "3.1-alpine" -image "base.alpine"
+
+    .\build-base.ps1 -tag "5.0" -image "base"
+    .\build-base.ps1 -tag "5.0-buster-slim" -image "base"
+    .\build-base.ps1 -tag "5.0-focal" -image "base"
+    .\build-base.ps1 -tag "5.0-alpine" -image "base.alpine"
 ```
 
 ### Development SDK `kdcllc/dotnet-sdk:latest`
@@ -46,8 +54,11 @@ The goal is to have a standard shared DotNetCore images for the Web development 
 | 3.0-bionic | | (Ubuntu 18.04) |
 | 3.0-alpine | | (Alpine 3.10) |
 | 3.1 | 3.1-buster, `latest` | (Debian 10) |
+| 5.0 | 5.0-buster-slim | (Debian 10) |
 | 3.1-bionic | | (Ubuntu 18.04) |
+| 5.0-focal | | (Ubuntu 20.04) |
 | 3.1-alpine | | (Alpine 3.10) |
+| 5.0-alpine | | (Alpine 3.11) |
 
 ```ps1
     .\build-base.ps1 -tag "3.1" -image "dev"
@@ -55,6 +66,12 @@ The goal is to have a standard shared DotNetCore images for the Web development 
     .\build-base.ps1 -tag "3.1-buster" -image "dev"
     .\build-base.ps1 -tag "3.1-bionic" -image "dev"
     .\build-base.ps1 -tag "3.1-alpine" -image "dev"
+
+    .\build-base.ps1 -tag "5.0" -image "dev"
+    .\build-base.ps1 -tag "5.0-buster-slim" -image "dev"
+    .\build-base.ps1 -tag "5.0-focal" -image "dev"
+    .\build-base.ps1 -tag "5.0-alpine" -image "dev"
+
 ```
 
 ### The minimal development SDK `kdcllc/dotnet-sdk-mini`
@@ -70,8 +87,11 @@ The goal is to have a standard shared DotNetCore images for the Web development 
 | 3.0-bionic | | (Ubuntu 18.04) |
 | 3.0-alpine | | (Alpine 3.10) |
 | 3.1 | 3.1-buster, `latest` | (Debian 10) |
+| 5.0 | 5.0-buster-slim | (Debian 10) |
 | 3.1-bionic | | (Ubuntu 18.04) |
+| 5.0-focal | | (Ubuntu 20.04) |
 | 3.1-alpine | | (Alpine 3.10) |
+| 5.0-alpine | | (Alpine 3.11) |
 
 ```ps1
     .\build-base.ps1 -tag "3.1" -image "mini"
@@ -79,6 +99,11 @@ The goal is to have a standard shared DotNetCore images for the Web development 
     .\build-base.ps1 -tag "3.1-buster" -image "mini"
     .\build-base.ps1 -tag "3.1-bionic" -image "mini"
     .\build-base.ps1 -tag "3.1-alpine" -image "mini"
+
+    .\build-base.ps1 -tag "5.0" -image "mini"
+    .\build-base.ps1 -tag "5.0-buster-slim" -image "mini"
+    .\build-base.ps1 -tag "5.0-focal" -image "mini"
+    .\build-base.ps1 -tag "5.0-alpine" -image "mini"
 ```
 
 ### Visual Studio Code Remote Container Development `kdcllc/dotnet-sdk-vscode`
@@ -94,13 +119,19 @@ The goal is to have a standard shared DotNetCore images for the Web development 
 | 3.0-bionic | | (Ubuntu 18.04) |
 | 3.0-alpine | | (Alpine 3.10) |
 | 3.1 | 3.1-buster, `latest` | (Debian 10) |
+| 5.0 | 5.0-buster-slim | (Debian 10) |
 | 3.1-bionic | | (Ubuntu 18.04) |
+| 5.0-focal | | (Ubuntu 20.04) |
 
 ```ps1
     .\build-base.ps1 -tag "3.1" -image "vscode"
     .\build-base.ps1 -tag "latest" -image "vscode"
     .\build-base.ps1 -tag "3.1-buster" -image "vscode"
     .\build-base.ps1 -tag "3.1-bionic" -image "vscode"
+
+    .\build-base.ps1 -tag "5.0" -image "vscode"
+    .\build-base.ps1 -tag "5.0-buster-slim" -image "vscode"
+    .\build-base.ps1 -tag "5.0-focal" -image "vscode"
 ```
 
 ## Sample projects

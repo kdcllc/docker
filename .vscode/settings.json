@@ -3,5 +3,6 @@
     // https://github.com/Microsoft/vscode-docker/issues/102#issuecomment-404945637
     "files.associations": {
         "Dockerfile*": "dockerfile"
-    }
+    },
+    "files.eol": "\n"
 }
