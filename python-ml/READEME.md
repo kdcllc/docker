@@ -1,5 +1,6 @@
 # Machine Learning with Python
 
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/kdcllc/docker/master/LICENSE)
 
 ## Build Images
 

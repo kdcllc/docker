@@ -1,5 +1,7 @@
 # Docker Images for Microsoft .NET Core development
 
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/kdcllc/docker/master/LICENSE)
+
 The goal is to have a standard shared DotNetCore images for the Web development that provides with custom `ONBUILD` actions for DotNetCore projects.
 
 [Official Microsoft .NET Core SDK hub tags info](https://hub.docker.com/_/microsoft-dotnet-core-sdk/)
