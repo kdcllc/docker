@@ -6,6 +6,12 @@ The goal is to have a standard shared DotNetCore images for the Web development 
 
 [Official Microsoft .NET Core SDK hub tags info](https://hub.docker.com/_/microsoft-dotnet-core-sdk/)
 
+Clean up local docker
+```bash
+     docker system prune
+    docker system prune -a
+```
+
 ## Label 4.0 Image Tags
 
 ### Base Development image `kdcllc/dotnet-sdk-base:latest`
