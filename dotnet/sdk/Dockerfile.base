@@ -8,7 +8,7 @@ ARG image
 FROM ${image}:${sdkTag} as builder
 LABEL version="4.0" maintainer="kdcllc <info@kingdavidconsulting.com>"
 
-ARG NODE_VERSION=8.11.3
+ARG NODE_VERSION=14.15.0
 
 # default container update
 RUN apt-get -y update &&\

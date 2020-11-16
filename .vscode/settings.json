@@ -4,5 +4,6 @@
     "files.associations": {
         "Dockerfile*": "dockerfile"
     },
-    "files.eol": "\n"
+    "files.eol": "\n",
+    "powershell.codeFormatting.addWhitespaceAroundPipe": true
 }

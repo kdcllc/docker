@@ -3,7 +3,7 @@
 param (
 
     # The dotnet tag to build
-    $tag = "2.1",
+    $tag = "3.1",
 
     $image = "base"
 )

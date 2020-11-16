@@ -13,8 +13,28 @@ services:
       args:
        image: mcr.microsoft.com/dotnet/core/sdk
        sdkTag: ${TAG}
-       NODE_VERSION: 12.13.1
+       NODE_VERSION: 14.15.0
   
+  base5:
+    image: kdcllc/dotnet-sdk-base:${TAG}
+    build:
+      context: .
+      dockerfile: Dockerfile.base
+      args:
+       image: mcr.microsoft.com/dotnet/sdk
+       sdkTag: ${TAG}
+       NODE_VERSION: 14.15.0
+  
+  # base image
+  base.alpine5:
+    image: kdcllc/dotnet-sdk-base:${TAG}
+    build:
+      context: .
+      dockerfile: Dockerfile.alpine.base30
+      args:
+       image: mcr.microsoft.com/dotnet/sdk
+       sdkTag: ${TAG}
+
   # base image
   base.alpine:
     image: kdcllc/dotnet-sdk-base:${TAG}

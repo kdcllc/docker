@@ -7,8 +7,8 @@ The goal is to have a standard shared DotNetCore images for the Web development 
 [Official Microsoft .NET Core SDK hub tags info](https://hub.docker.com/_/microsoft-dotnet-core-sdk/)
 
 Clean up local docker
+
 ```bash
-     docker system prune
     docker system prune -a
 ```
 
@@ -43,10 +43,10 @@ Clean up local docker
     .\build-base.ps1 -tag "3.1-bionic" -image "base"
     .\build-base.ps1 -tag "3.1-alpine" -image "base.alpine"
 
-    .\build-base.ps1 -tag "5.0" -image "base"
-    .\build-base.ps1 -tag "5.0-buster-slim" -image "base"
-    .\build-base.ps1 -tag "5.0-focal" -image "base"
-    .\build-base.ps1 -tag "5.0-alpine" -image "base.alpine"
+    .\build-base.ps1 -tag "5.0" -image "base5"
+    .\build-base.ps1 -tag "5.0-buster-slim" -image "base5"
+    .\build-base.ps1 -tag "5.0-focal" -image "base5"
+    .\build-base.ps1 -tag "5.0-alpine" -image "base.alpine5"
 ```
 
 ### Development SDK `kdcllc/dotnet-sdk:latest`
@@ -176,7 +176,10 @@ Clean up docker local system
     # clean up system
     docker system prune -f
     docker container prune -f
-
+    
+    # removes all images
+    docker image prune -a
+    
     # list all images
     docker images -f dangling=true
     # clean up
