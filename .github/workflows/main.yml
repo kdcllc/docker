@@ -39,13 +39,13 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Build DotNetCore 3.1 Images
+        shell: pwsh
         run: .\dotnet\sdk\build-3.1.ps1
-        shell: powershell
 
       - name: Build DotNetCore 5.0 Images
+        shell: pwsh
         run: .\dotnet\sdk\build-5.0.ps1
-        shell: powershell
 
       - name: Build DotNetCore 6.0 Images
+        shell: pwsh
         run: .\dotnet\sdk\build-6.0.ps1
-        shell: powershell
