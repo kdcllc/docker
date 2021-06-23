@@ -13,7 +13,7 @@ function Go () {
     Write-Host "Building Docker Image for $tag for $image..." -foregroundColor "green"
     
     $Env:TAG=$tag
-    docker-compose -f "docker-compose.yml" up -d --remove-orphans --build $image
+    docker-compose -f ".\dotnet\sdk\docker-compose.yml" up -d --remove-orphans --build $image
 
     $repo = "kdcllc/dotnet-sdk-"+ $image + ":" +$Env:TAG
     
