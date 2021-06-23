@@ -2,13 +2,13 @@
 
 name: CI
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -38,6 +38,14 @@ jobs:
           logout: true
 
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: .\dotnet\sdk\build-all.ps1
+      - name: Build DotNetCore 3.1 Images
+        run: .\dotnet\sdk\build-3.1.ps1
+        shell: powershell
+
+      - name: Build DotNetCore 5.0 Images
+        run: .\dotnet\sdk\build-5.0.ps1
+        shell: powershell
+
+      - name: Build DotNetCore 6.0 Images
+        run: .\dotnet\sdk\build-6.0.ps1
         shell: powershell

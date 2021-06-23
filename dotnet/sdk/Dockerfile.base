@@ -6,13 +6,13 @@ ARG image
 
 # Build image
 FROM ${image}:${sdkTag} as builder
-LABEL version="4.0" maintainer="kdcllc <info@kingdavidconsulting.com>"
+LABEL version="5.0" maintainer="kdcllc <info@kingdavidconsulting.com>"
 
 ARG NODE_VERSION=14.15.0
 
 # default container update
-RUN apt-get -y update &&\
-    apt-get -y install wget gnupg2 &&\
+RUN apt -y update &&\
+    apt -y install wget gnupg2 &&\
     rm -rf /var/lib/apt/lists/* 
 
 # NODE

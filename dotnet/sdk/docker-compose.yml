@@ -1,49 +1,32 @@
-version: '3.4'
+# List of all of the images
+# https://mcrflowprodcentralus.data.mcr.microsoft.com/mcrprod/dotnet/sdk?P1=1624457601&P2=1&P3=1&P4=59qQgZalHwxr0Kg9dhnOjBNGDnVBoBOuNHffCR5y%2Fyg%3D&se=2021-06-23T14%3A13%3A21Z&sig=6F1OHfQu5kBtJfs8O2fG3wMdK1uRzmMh4pYz0M0gnhs%3D&sp=r&sr=b&sv=2015-02-21
+version: "3.4"
 
 services:
   # base image
   # docker-compose -f "docker-compose-sdk-base.yml" up -d
   # example $Env:TAG="2.1"
   # docker push kdcllc/dotnet-sdk-base:$Env:TAG
+  
+  # base images
   base:
     image: kdcllc/dotnet-sdk-base:${TAG}
     build:
       context: .
       dockerfile: Dockerfile.base
       args:
-       image: mcr.microsoft.com/dotnet/core/sdk
-       sdkTag: ${TAG}
-       NODE_VERSION: 14.17.0
-  
-  base5:
-    image: kdcllc/dotnet-sdk-base:${TAG}
-    build:
-      context: .
-      dockerfile: Dockerfile.base
-      args:
-       image: mcr.microsoft.com/dotnet/sdk
-       sdkTag: ${TAG}
-       NODE_VERSION: 14.17.0
-  
-  # base image
-  base.alpine5:
-    image: kdcllc/dotnet-sdk-base:${TAG}
-    build:
-      context: .
-      dockerfile: Dockerfile.alpine.base30
-      args:
-       image: mcr.microsoft.com/dotnet/sdk
-       sdkTag: ${TAG}
+        image: mcr.microsoft.com/dotnet/sdk
+        sdkTag: ${TAG}
+        NODE_VERSION: 14.17.0
 
-  # base image
   base.alpine:
     image: kdcllc/dotnet-sdk-base:${TAG}
     build:
       context: .
       dockerfile: Dockerfile.alpine.base30
       args:
-       image: mcr.microsoft.com/dotnet/core/sdk
-       sdkTag: ${TAG}
+        image: mcr.microsoft.com/dotnet/sdk
+        sdkTag: ${TAG}
 
   # vscode image with remote debugging
   vscode:
@@ -52,22 +35,25 @@ services:
       context: .
       dockerfile: Dockerfile.vscode
       args:
-       image: kdcllc/dotnet-sdk-base
-       sdkTag: ${TAG}
+        image: kdcllc/dotnet-sdk-base
+        sdkTag: ${TAG}
 
+  # development build image
   dev:
     image: kdcllc/dotnet-sdk:${TAG}
     build:
       context: .
       dockerfile: Dockerfile.dev
       args:
-       image: kdcllc/dotnet-sdk-base
-       sdkTag: ${TAG}
+        image: kdcllc/dotnet-sdk-base
+        sdkTag: ${TAG}
+
+  # minimal development build image
   mini:
     image: kdcllc/dotnet-sdk-mini:${TAG}
     build:
       context: .
       dockerfile: Dockerfile.mini
       args:
-       image: kdcllc/dotnet-sdk-base
-       sdkTag: ${TAG}
+        image: kdcllc/dotnet-sdk-base
+        sdkTag: ${TAG}
