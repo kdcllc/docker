@@ -7,7 +7,7 @@ ARG image
 
 # Build image
 FROM ${image}:${sdkTag} as builder
-LABEL version="4.0" maintainer="kdcllc <info@kingdavidconsulting.com>"
+LABEL version="7.0" maintainer="kdcllc <info@kingdavidconsulting.com>"
 
 # Child container input arguments
 # netcore21, netcore22, netcore30

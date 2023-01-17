@@ -6,7 +6,7 @@ ARG image
 
 # Build image
 FROM ${image}:${sdkTag} as builder
-LABEL version="4.0" maintainer="kdcllc <info@kingdavidconsulting.com>"
+LABEL version="7.0" maintainer="kdcllc <info@kingdavidconsulting.com>"
 
 # default container update
 RUN apk update && apk upgrade && \
